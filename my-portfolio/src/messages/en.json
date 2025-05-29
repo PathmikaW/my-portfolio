@@ -1,0 +1,11 @@
+{
+  "home": {
+    "title": "Hi, I’m Pathmika 👋",
+    "subtitle": "I’m a software engineer who builds modern, performant, and thoughtful digital experiences. Welcome to my portfolio!"
+  },
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "contact": "Contact"
+  }
+}

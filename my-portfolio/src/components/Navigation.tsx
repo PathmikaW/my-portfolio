@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import ThemeToggle from "@/components/ThemeToggle";
+import LanguageToggle from "@/components/LanguageToggle";
 
 export default function Navigation() {
   return (
@@ -20,7 +21,8 @@ export default function Navigation() {
           <Button variant="ghost">Contact</Button>
         </Link>
 
-        {/* Dark Mode Toggle */}
+        {/* Toggle Buttons */}
+        <LanguageToggle />
         <ThemeToggle />
       </div>
     </nav>
