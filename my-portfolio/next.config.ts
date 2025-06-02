@@ -3,9 +3,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   // Your Next.js configuration
-  experimental: {
-    typedRoutes: true,
-  },
+   devIndicators: false,
 };
 
 export default withNextIntl()(nextConfig);
