@@ -1,11 +1,11 @@
 "use client";
-import { useApp } from "@/context/AppContext";
+import { useAppContext } from '@/context/AppContext';
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 import { useEffect } from "react";
 
 export default function ThemeToggle() {
-  const { state, dispatch } = useApp();
+  const { state, dispatch } = useAppContext();
 
   useEffect(() => {
     document.documentElement.classList.toggle("dark", state.theme === "dark");
