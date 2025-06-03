@@ -1,8 +1,14 @@
-// src/app/[locale]/contact/page.tsx
-
 'use client';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+
+interface ContactInfo {
+  phone: string;
+  email: string;
+  location: string;
+  linkedin: string;
+  facebook: string;
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -13,6 +19,16 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
+  const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
+
+  useEffect(() => {
+    const fetchContactInfo = async () => {
+      const res = await fetch('/api/contact');
+      const data = await res.json();
+      setContactInfo(data);
+    };
+    fetchContactInfo();
+  }, []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
@@ -50,10 +66,57 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col max-w-xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold mb-8 text-center">Contact Me</h1>
+    <div className="min-h-screen flex flex-col max-w-4xl mx-auto py-16 px-4 space-y-12">
+      <h1 className="text-4xl font-bold text-center mb-8">Contact Me</h1>
 
+      {/* Section 1: Contact Info */}
+      {contactInfo ? (
+        <div className="space-y-4 text-lg">
+          <div className="flex items-center gap-2">
+            <span>📞</span>
+            <span>{contactInfo.phone}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>📧</span>
+            <a href={`mailto:${contactInfo.email}`} className="text-blue-600 hover:underline">
+              {contactInfo.email}
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>📍</span>
+            <span>{contactInfo.location}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>🔗</span>
+            <a
+              href={contactInfo.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              LinkedIn
+            </a>
+          </div>
+          <div className="flex items-center gap-2">
+            <span>🔗</span>
+            <a
+              href={contactInfo.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-600 hover:underline"
+            >
+              Facebook
+            </a>
+          </div>
+        </div>
+      ) : (
+        <p>Loading contact information...</p>
+      )}
+
+      {/* Section 2: Send Message Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
+        <h2 className="text-3xl font-bold mb-4">Send a Message</h2>
+
         <div>
           <label className="block mb-2 font-medium">Name</label>
           <input
