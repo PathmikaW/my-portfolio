@@ -1,4 +1,3 @@
-// src/app/[locale]/layout.tsx
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
 import { locales } from '@/i18n/config';
@@ -34,7 +33,7 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
+      <body className="flex flex-col min-h-screen bg-gradient-to-b from-gray-100 to-blue-200 dark:from-gray-900 dark:to-black">
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AppContextProvider>
             <Header />
