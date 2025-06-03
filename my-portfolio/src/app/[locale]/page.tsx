@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
 import { IMAGES } from '@/lib/images';
@@ -14,6 +14,7 @@ interface Profile {
 
 export default function HomePage() {
   const t = useTranslations('home');
+  const locale = useLocale();
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -61,19 +62,19 @@ export default function HomePage() {
 
           <div className="flex flex-wrap justify-center gap-3 mt-6">
             <Link
-              href="/about"
+             href={`/${locale}/about` as const}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
             >
               {t('aboutButton')}
             </Link>
             <Link
-              href="/projects"
+             href={`/${locale}/projects` as const}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
             >
               {t('projectsButton')}
             </Link>
             <Link
-              href="/contact"
+               href={`/${locale}/contact` as const}
               className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
             >
               {t('contactButton')}
