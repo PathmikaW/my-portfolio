@@ -4,7 +4,11 @@ import { useEffect, useState } from 'react';
 import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { IMAGES } from '@/lib/images';
+import { type LinkProps } from 'next/link';
 
 interface Profile {
   name: string;
@@ -28,60 +32,93 @@ export default function HomePage() {
     fetchProfile();
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   return (
-    <div className="min-h-screen flex flex-col">
-      <main className="flex-1 flex items-center justify-center px-4 py-16 text-center">
-        <div className="max-w-2xl">
-
-          {/* Profile image */}
-          <div className="flex justify-center mb-6">
-            <Image
-              src={IMAGES.profile}
-              alt="Profile picture of Pathmika Weerarathna"
-              width={150}
-              height={150}
-              className="rounded-full border shadow"
-              priority
-            />
-          </div>
-
-          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
-            {isLoading
-              ? t('loading')
-              : profile
-              ? `Hi, I'm ${profile.name}`
-              : t('title')}
-          </h1>
-          <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed mb-4">
-            {isLoading
-              ? ''
-              : profile
-              ? profile.summary
-              : t('subtitle')}
-          </p>
-
-          <div className="flex flex-wrap justify-center gap-3 mt-6">
-            <Link
-             href={`/${locale}/about` as const}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-16 text-center relative overflow-hidden">
+      <motion.div
+        className="max-w-3xl w-full"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <Card className="bg-gray-200/50 dark:bg-gray-800/50 backdrop-blur-md border-none shadow-xl shadow-blue-500/20 dark:shadow-blue-500/20">
+          <CardHeader>
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center mb-6"
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
             >
-              {t('aboutButton')}
-            </Link>
-            <Link
-             href={`/${locale}/projects` as const}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
+              <Image
+                src={IMAGES.profile}
+                alt="Profile picture of Pathmika Weerarathna"
+                width={150}
+                height={150}
+                className="rounded-full border-4 border-blue-500/50 shadow-lg"
+                priority
+              />
+            </motion.div>
+            <motion.div variants={itemVariants}>
+              <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-500">
+                {isLoading ? t('loading') : profile ? `Hi, I'm ${profile.name}` : t('title')}
+              </CardTitle>
+            </motion.div>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            <motion.p
+              variants={itemVariants}
+              className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed"
             >
-              {t('projectsButton')}
-            </Link>
-            <Link
-               href={`/${locale}/contact` as const}
-              className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 cursor-pointer"
-            >
-              {t('contactButton')}
-            </Link>
-          </div>
-        </div>
-      </main>
+              {isLoading ? '' : profile ? profile.summary : t('subtitle')}
+            </motion.p>
+            <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
+              <Link href={`/${locale}/about` as LinkProps['href']}>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' }} transition={{ duration: 0.3 }}>
+                  <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-300 text-sm sm:text-base">
+                    {t('aboutButton')}
+                  </Button>
+                </motion.div>
+              </Link>
+              <Link href={`/${locale}/projects` as LinkProps['href']}>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' }} transition={{ duration: 0.3 }}>
+                  <Button className="bg-blue-600 hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700 transition-all duration-300 text-sm sm:text-base">
+                    {t('projectsButton')}
+                  </Button>
+                </motion.div>
+              </Link>
+              <Link href={`/${locale}/contact` as LinkProps['href']}>
+                <motion.div whileHover={{ scale: 1.05, boxShadow: '0 0 10px rgba(59, 130, 246, 0.5)' }} transition={{ duration: 0.3 }}>
+                  <Button
+                    variant="outline"
+                    className="border-blue-500 text-blue-600 hover:bg-blue-200/20 dark:text-blue-400 dark:hover:bg-blue-500/20 transition-all duration-300 text-sm sm:text-base"
+                  >
+                    {t('contactButton')}
+                  </Button>
+                </motion.div>
+              </Link>
+            </motion.div>
+          </CardContent>
+        </Card>
+      </motion.div>
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 bg-gradient-to-r from-blue-300/10 to-purple-300/10 dark:from-blue-500/10 dark:to-purple-500/10"
+          animate={{ x: [0, 100, 0], transition: { duration: 20, repeat: Infinity } }}
+        />
+      </div>
     </div>
   );
 }
