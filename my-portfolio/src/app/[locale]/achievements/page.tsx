@@ -14,9 +14,10 @@ interface Props {
 }
 
 export default async function AchievementsPage({ params }: Props) {
+  const { locale } = await params;
   const achievements: Achievement[] = await getAchievements();
 
   return (
-    <AchievementsClient achievements={achievements} locale={params.locale} />
+    <AchievementsClient achievements={achievements} locale={locale} />
   );
 }

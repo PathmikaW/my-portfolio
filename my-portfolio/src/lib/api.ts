@@ -23,3 +23,16 @@ export async function getAchievements() {
 
   return res.json();
 }
+
+export async function getContactInfo() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/contact`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch contact info');
+  }
+
+  return res.json();
+}
+
