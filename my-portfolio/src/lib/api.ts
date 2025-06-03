@@ -36,3 +36,14 @@ export async function getContactInfo() {
   return res.json();
 }
 
+export async function getEducation() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/education`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch education');
+  }
+
+  return res.json();
+}
