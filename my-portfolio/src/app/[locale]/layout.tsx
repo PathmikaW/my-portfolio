@@ -14,8 +14,8 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   if (!locales.includes(locale)) notFound();
 
   return {
-    title: 'My Portfolio',
-    description: `Portfolio in ${locale}`,
+    title: 'Home | Pathmika Weerarathna',
+    description: 'Welcome to the portfolio of Pathmika Weerarathna. Explore projects, skills, and contact information.',
   };
 }
 
