@@ -1,5 +1,3 @@
-// src/app/[locale]/page.tsx
-
 import { getProfile } from '@/lib/api';
 import HomeClient from './_components/HomeClient';
 
