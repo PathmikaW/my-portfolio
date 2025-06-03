@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface Project {
   id: number;
@@ -15,6 +16,7 @@ interface Project {
 }
 
 export default function ProjectsPage() {
+  const t = useTranslations();
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [expandedProjectId, setExpandedProjectId] = useState<number | null>(null);
@@ -36,13 +38,16 @@ export default function ProjectsPage() {
   }, []);
 
   // Group projects by section
-  const groupedProjects = projects.reduce((acc, project) => {
-    if (!acc[project.section]) {
-      acc[project.section] = [];
-    }
-    acc[project.section].push(project);
-    return acc;
-  }, {} as Record<string, Project[]>);
+  const groupedProjects = projects.reduce(
+    (acc, project) => {
+      if (!acc[project.section]) {
+        acc[project.section] = [];
+      }
+      acc[project.section].push(project);
+      return acc;
+    },
+    {} as Record<string, Project[]>
+  );
 
   const toggleExpand = (projectId: number) => {
     setExpandedProjectId((prevId) => (prevId === projectId ? null : projectId));
@@ -50,10 +55,10 @@ export default function ProjectsPage() {
 
   return (
     <div className="max-w-6xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold mb-8 text-center">My Projects</h1>
+      <h1 className="text-4xl font-bold mb-8 text-center">{t('pageTitle.projects')}</h1>
 
       {loading ? (
-        <p className="text-center">Loading projects...</p>
+        <p className="text-center">{t('projects.loading')}</p>
       ) : (
         Object.entries(groupedProjects).map(([section, projects]) => (
           <div key={section} className="mb-12">
@@ -68,7 +73,7 @@ export default function ProjectsPage() {
                   <h3 className="text-2xl font-semibold mb-2">{project.title}</h3>
                   <p className="mb-3 text-gray-600">{project.description}</p>
                   <div className="mb-3">
-                    <strong>Tech Stack:</strong>{' '}
+                    <strong>{t('projects.techStack')}:</strong>{' '}
                     {project.techStack?.length ? project.techStack.join(', ') : 'N/A'}
                   </div>
 
@@ -81,7 +86,7 @@ export default function ProjectsPage() {
                         rel="noopener noreferrer"
                         className="text-blue-600 hover:underline font-medium"
                       >
-                        Visit Project →
+                        {t('projects.visitProject')}
                       </a>
                     )}
 
@@ -89,7 +94,9 @@ export default function ProjectsPage() {
                       onClick={() => toggleExpand(project.id)}
                       className="text-blue-600 hover:underline font-medium focus:outline-none"
                     >
-                      {expandedProjectId === project.id ? 'Hide Details' : 'View More'}
+                      {expandedProjectId === project.id
+                        ? t('projects.hideDetails')
+                        : t('projects.viewMore')}
                     </button>
                   </div>
 
@@ -105,7 +112,7 @@ export default function ProjectsPage() {
                           }}
                         />
                       ) : (
-                        <p className="text-gray-500">No additional details available.</p>
+                        <p className="text-gray-500">{t('projects.noDetails')}</p>
                       )}
 
                       {/* Safe image rendering */}
@@ -125,11 +132,7 @@ export default function ProjectsPage() {
                       {/* Video rendering */}
                       {project.video && (
                         <div className="mt-3">
-                          <video
-                            controls
-                            src={project.video}
-                            className="w-full rounded shadow"
-                          >
+                          <video controls src={project.video} className="w-full rounded shadow">
                             Your browser does not support the video tag.
                           </video>
                         </div>
