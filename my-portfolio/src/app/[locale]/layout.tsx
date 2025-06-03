@@ -5,6 +5,7 @@ import { getMessages } from '@/i18n/request';
 import { AppContextProvider } from '@/context/AppContext';
 import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
+import Background from '@/components/common/Background'; // Import the new client component
 import '../globals.css';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
@@ -33,7 +34,8 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen bg-gradient-to-b from-gray-100 to-blue-200 dark:from-gray-900 dark:to-black">
+      <body className="flex flex-col min-h-screen relative">
+        <Background /> {/* Render the client-side background component */}
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AppContextProvider>
             <Header />
