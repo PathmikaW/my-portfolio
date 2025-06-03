@@ -1,14 +1,71 @@
 {
   "home": {
     "title": "Hi, I’m Pathmika 👋",
-    "subtitle": "I’m a software engineer who builds modern, performant, and thoughtful digital experiences. Welcome to my portfolio!"
+    "subtitle": "I’m a software engineer who builds modern, performant, and thoughtful digital experiences. Welcome to my portfolio!",
+    "loading": "Loading profile...",
+    "aboutButton": "About Me",
+    "projectsButton": "View Projects",
+    "contactButton": "Contact"
   },
   "nav": {
     "home": "Home",
+    "about": "About",
+    "experience": "Experience",
+    "education": "Education",
     "projects": "Projects",
+    "achievements": "Achievements",
+    "extracurricular": "Extracurricular",
     "contact": "Contact"
+  },
+  "pageTitle": {
+    "about": "About Me",
+    "experience": "Experience",
+    "education": "Education",
+    "projects": "Projects",
+    "achievements": "Achievements",
+    "extracurricular": "Extracurricular",
+    "contact": "Contact Me"
   },
   "footer": {
     "copyright": "My Portfolio. All rights reserved."
+  },
+  "about": {
+    "skills": "Skills",
+    "languages": "Languages",
+    "loading": "Loading profile...",
+    "error": "Failed to load profile."
+  },
+  "contact": {
+    "loading": "Loading contact information...",
+    "error": "Failed to load contact information.",
+    "sendMessage": "Send a Message",
+    "name": "Name",
+    "email": "Email",
+    "message": "Message",
+    "sendButton": "Send Message",
+    "sending": "Sending...",
+    "successMessage": "Thank you! Your message has been sent.",
+    "errorMessage": "An error occurred. Please try again."
+  },
+  "achievements": {
+    "loading": "Loading achievements...",
+    "error": "Failed to load achievements."
+  },
+  "education": {
+    "loading": "Loading education information..."
+  },
+  "experience": {
+    "loading": "Loading experience information..."
+  },
+  "extracurricular": {
+    "loading": "Loading extracurricular activities..."
+  },
+  "projects": {
+    "loading": "Loading projects...",
+    "techStack": "Tech Stack",
+    "visitProject": "Visit Project →",
+    "viewMore": "View More",
+    "hideDetails": "Hide Details",
+    "noDetails": "No additional details available."
   }
 }
