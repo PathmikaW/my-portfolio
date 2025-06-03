@@ -1,15 +1,13 @@
-// src/app/[locale]/about/page.tsx
-
 import { getProfile } from '@/lib/api';
 import { getTranslations } from 'next-intl/server';
 import AboutClient from './_components/AboutClient';
 
 interface Props {
-  params: Promise<{ locale: string }>; // ✅ App Router 15+ correct
+  params: Promise<{ locale: string }>;
 }
 
 export default async function AboutPage({ params }: Props) {
-  const { locale } = await params; // ✅ Await params (safe!)
+  const { locale } = await params;
 
   const t = await getTranslations({ locale, namespace: 'pageTitle' });
   const profile = await getProfile();

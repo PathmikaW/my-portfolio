@@ -1,5 +1,3 @@
-// src/app/[locale]/education/page.tsx
-
 import { getEducation } from '@/lib/api';
 import EducationClient from './_components/EducationClient';
 
@@ -12,11 +10,11 @@ interface Education {
 }
 
 interface Props {
-  params: Promise<{ locale: string }>; // ✅ App Router 15+ correct
+  params: Promise<{ locale: string }>;
 }
 
 export default async function EducationPage({ params }: Props) {
-  const { locale } = await params; // ✅ Await params
+  const { locale } = await params;
 
   const education: Education[] = await getEducation();
 

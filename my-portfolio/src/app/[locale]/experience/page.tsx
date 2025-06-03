@@ -1,5 +1,3 @@
-// src/app/[locale]/experience/page.tsx
-
 import { getExperience } from '@/lib/api';
 import ExperienceClient from './_components/ExperienceClient';
 

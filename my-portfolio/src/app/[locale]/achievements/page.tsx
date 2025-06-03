@@ -1,5 +1,3 @@
-// src/app/[locale]/achievements/page.tsx
-
 import { getAchievements } from '@/lib/api';
 import AchievementsClient from './_components/AchievementsClient';
 

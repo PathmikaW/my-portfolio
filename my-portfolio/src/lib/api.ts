@@ -59,3 +59,15 @@ export async function getExperience() {
 
   return res.json();
 }
+
+export async function getExtracurricular() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/extracurricular`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch extracurricular activities');
+  }
+
+  return res.json();
+}
