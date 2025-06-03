@@ -47,3 +47,15 @@ export async function getEducation() {
 
   return res.json();
 }
+
+export async function getExperience() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/experience`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch experience');
+  }
+
+  return res.json();
+}
