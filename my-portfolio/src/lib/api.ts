@@ -2,11 +2,23 @@
 
 export async function getProfile() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/profile`, {
-    next: { revalidate: 60 }, // Next.js cache, optional
+    next: { revalidate: 60 },
   });
 
   if (!res.ok) {
     throw new Error('Failed to fetch profile');
+  }
+
+  return res.json();
+}
+
+export async function getAchievements() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/achievements`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch achievements');
   }
 
   return res.json();
