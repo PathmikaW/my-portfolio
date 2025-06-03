@@ -1,21 +1,86 @@
-import axios from 'axios';
+// src/lib/api.ts
 
-const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL,
-  timeout: 10000,
-});
+export async function getProfile() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/profile`, {
+    next: { revalidate: 60 },
+  });
 
-api.interceptors.request.use((config) => {
-  // You can add auth token here
-  return config;
-});
-
-api.interceptors.response.use(
-  (response) => response.data,
-  (error) => {
-    console.error('API Error:', error);
-    return Promise.reject(error);
+  if (!res.ok) {
+    throw new Error('Failed to fetch profile');
   }
-);
 
-export default api;
+  return res.json();
+}
+
+export async function getAchievements() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/achievements`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch achievements');
+  }
+
+  return res.json();
+}
+
+export async function getContactInfo() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/contact`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch contact info');
+  }
+
+  return res.json();
+}
+
+export async function getEducation() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/education`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch education');
+  }
+
+  return res.json();
+}
+
+export async function getExperience() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/experience`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch experience');
+  }
+
+  return res.json();
+}
+
+export async function getExtracurricular() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/extracurricular`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch extracurricular activities');
+  }
+
+  return res.json();
+}
+
+export async function getProjects() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/projects`, {
+    next: { revalidate: 60 },
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch projects');
+  }
+
+  return res.json();
+}
+

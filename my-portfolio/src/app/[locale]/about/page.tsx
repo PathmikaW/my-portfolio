@@ -1,60 +1,23 @@
-'use client';
+import { getProfile } from '@/lib/api';
+import { getTranslations } from 'next-intl/server';
+import AboutClient from './_components/AboutClient';
 
-import { useEffect, useState } from 'react';
-import { useTranslations } from 'next-intl';
-
-interface Profile {
-  name: string;
-  title: string;
-  summary: string;
-  skills: string[];
-  languages: { language: string; level: string }[];
+interface Props {
+  params: Promise<{ locale: string }>;
 }
 
-export default function AboutPage() {
-  const t = useTranslations();
-  const [profile, setProfile] = useState<Profile | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+export default async function AboutPage({ params }: Props) {
+  const { locale } = await params;
 
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const res = await fetch('/api/profile');
-      const data = await res.json();
-      setProfile(data);
-      setIsLoading(false);
-    };
-    fetchProfile();
-  }, []);
+  const t = await getTranslations({ locale, namespace: 'pageTitle' });
+  const profile = await getProfile();
 
   return (
-    <div className="max-w-4xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold mb-6">{t('pageTitle.about')}</h1>
-
-      {isLoading ? (
-        <p>{t('about.loading')}</p>
-      ) : profile ? (
-        <>
-          <p className="text-xl mb-6">{profile.summary}</p>
-
-          <h2 className="text-2xl font-bold mb-2">{t('about.skills')}</h2>
-          <ul className="list-disc pl-5 mb-6">
-            {profile.skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
-
-          <h2 className="text-2xl font-bold mb-2">{t('about.languages')}</h2>
-          <ul className="list-disc pl-5">
-            {profile.languages.map((lang, index) => (
-              <li key={index}>
-                {lang.language} - {lang.level}
-              </li>
-            ))}
-          </ul>
-        </>
-      ) : (
-        <p className="text-center text-red-600">{t('about.error')}</p>
-      )}
+    <div className="max-w-5xl mx-auto py-12 px-4 md:px-8 lg:px-12 space-y-8">
+      <h1 className="text-4xl font-bold tracking-tight mb-4">
+        {t('about')}
+      </h1>
+      <AboutClient profile={profile} />
     </div>
   );
 }

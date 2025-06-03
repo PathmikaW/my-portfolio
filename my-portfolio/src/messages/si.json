@@ -15,7 +15,9 @@
     "projects": "ව්‍යාපෘති",
     "achievements": "ප්‍රාප්ති",
     "extracurricular": "අතිරේක ක්‍රියාකාරකම්",
-    "contact": "සම්බන්ධ වන්න"
+    "contact": "සම්බන්ධ වන්න",
+    "menuTitle": "නාවික මෙනුව",
+    "menuDescription": "පත්මිකගේ පෝට්ෆෝලියෝ සඳහා ප්‍රධාන නාවික මෙනුව"
   },
   "pageTitle": {
     "about": "මගේ පිළිබඳව",
