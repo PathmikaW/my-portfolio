@@ -9,13 +9,15 @@ import ThemeToggle from '@/components/common/ThemeToggle';
 import LanguageToggle from '@/components/common/LanguageToggle';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { type LinkProps } from 'next/link';
+import { useRouter } from 'next/navigation';  // ✅ Import router
 
 export function Header() {
   const locale = useLocale();
   const t = useTranslations('nav');
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();  // ✅ Initialize router
 
   const navItems: { href: LinkProps['href']; label: string }[] = [
     { href: `/${locale}`, label: t('home') },
@@ -27,6 +29,13 @@ export function Header() {
     { href: `/${locale}/extracurricular`, label: t('extracurricular') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
+
+  // ✅ Prefetch all routes on first mount
+  useEffect(() => {
+    navItems.forEach((item) => {
+      router.prefetch(item.href as string);
+    });
+  }, [locale]);  // locale as dependency → if user changes language, it refetches new routes
 
   const navVariants = {
     hidden: { opacity: 0, y: -20 },
