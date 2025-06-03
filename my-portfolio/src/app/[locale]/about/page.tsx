@@ -2,6 +2,9 @@
 
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Skeleton } from '@/components/ui/skeleton';
 
 interface Profile {
   name: string;
@@ -27,33 +30,61 @@ export default function AboutPage() {
   }, []);
 
   return (
-    <div className="max-w-4xl mx-auto py-16 px-4">
-      <h1 className="text-4xl font-bold mb-6">{t('pageTitle.about')}</h1>
+    <div className="max-w-5xl mx-auto py-12 px-4 md:px-8 lg:px-12 space-y-8">
+      <h1 className="text-4xl font-bold tracking-tight mb-4">
+        {t('pageTitle.about')}
+      </h1>
 
       {isLoading ? (
-        <p>{t('about.loading')}</p>
+        <div className="space-y-4">
+          <Skeleton className="h-6 w-1/3" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+          <Skeleton className="h-4 w-full" />
+        </div>
       ) : profile ? (
         <>
-          <p className="text-xl mb-6">{profile.summary}</p>
+          <Card>
+            <CardHeader>
+              <CardTitle>{profile.name} - {profile.title}</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-lg leading-relaxed text-muted-foreground">
+                {profile.summary}
+              </p>
 
-          <h2 className="text-2xl font-bold mb-2">{t('about.skills')}</h2>
-          <ul className="list-disc pl-5 mb-6">
-            {profile.skills.map((skill, index) => (
-              <li key={index}>{skill}</li>
-            ))}
-          </ul>
+              <div>
+                <h2 className="text-xl font-semibold mb-2">
+                  {t('about.skills')}
+                </h2>
+                <div className="flex flex-wrap gap-2">
+                  {profile.skills.map((skill, index) => (
+                    <Badge key={index} variant="outline">
+                      {skill}
+                    </Badge>
+                  ))}
+                </div>
+              </div>
 
-          <h2 className="text-2xl font-bold mb-2">{t('about.languages')}</h2>
-          <ul className="list-disc pl-5">
-            {profile.languages.map((lang, index) => (
-              <li key={index}>
-                {lang.language} - {lang.level}
-              </li>
-            ))}
-          </ul>
+              <div>
+                <h2 className="text-xl font-semibold mb-2">
+                  {t('about.languages')}
+                </h2>
+                <ul className="space-y-1 pl-4 list-disc text-base text-muted-foreground">
+                  {profile.languages.map((lang, index) => (
+                    <li key={index}>
+                      <span className="font-medium">{lang.language}</span> — {lang.level}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
         </>
       ) : (
-        <p className="text-center text-red-600">{t('about.error')}</p>
+        <p className="text-center text-red-500 text-lg">
+          {t('about.error')}
+        </p>
       )}
     </div>
   );
