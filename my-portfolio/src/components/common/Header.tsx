@@ -45,14 +45,19 @@ export function Header() {
 
   return (
     <motion.header
-      className="sticky top-0 z-50 bg-gray-900/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-blue-500/20 dark:border-blue-500/20 flex justify-between items-center py-4 px-4 sm:px-6"
+      className="sticky top-0 z-50 bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-cyan-400/20 dark:border-cyan-400/20 flex justify-between items-center py-4 px-4 sm:px-6"
       initial="hidden"
       animate="visible"
       variants={navVariants}
     >
-      <motion.h1 variants={itemVariants} className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 dark:from-blue-400 dark:to-purple-500">
-        Pathmika
-      </motion.h1>
+      <Link href={`/${locale}`}>
+        <motion.h1
+          variants={itemVariants}
+          className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500"
+        >
+          Pathmika
+        </motion.h1>
+      </Link>
 
       <div className="flex items-center gap-2 sm:gap-4">
         {/* Desktop Navigation */}
@@ -66,7 +71,7 @@ export function Header() {
                       <Link href={item.href}>
                         <Button
                           variant="ghost"
-                          className="text-gray-600 hover:text-gray-900 hover:bg-blue-200/20 dark:text-gray-300 dark:hover:text-white dark:hover:bg-blue-500/20 transition-all duration-300 text-sm sm:text-base"
+                          className="text-gray-800 hover:text-black hover:bg-cyan-200/30 dark:text-gray-200 dark:hover:text-white dark:hover:bg-cyan-500/30 transition-all duration-300 text-sm sm:text-base"
                         >
                           {item.label}
                         </Button>
@@ -83,15 +88,15 @@ export function Header() {
         <div className="sm:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-gray-600 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+              <Button variant="ghost" size="icon" className="text-gray-800 hover:text-black dark:text-gray-200 dark:hover:text-white">
                 {isOpen ? <X size={24} /> : <Menu size={24} />}
               </Button>
             </SheetTrigger>
             <SheetContent
               side="left"
-              title={t('menuTitle')} // e.g., "Navigation Menu"
-              description={t('menuDescription')} // e.g., "Main navigation menu for Pathmika’s portfolio"
-              className="w-64 bg-gray-100 dark:bg-gray-900 border-r border-blue-500/20 p-4"
+              title={t('menuTitle')}
+              description={t('menuDescription')}
+              className="w-64 bg-gray-100 dark:bg-gray-900 border-r border-cyan-400/20 p-4"
             >
               <motion.div
                 initial="hidden"
@@ -99,7 +104,7 @@ export function Header() {
                 variants={sidebarVariants}
                 className="flex flex-col gap-4"
               >
-                <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 dark:from-blue-400 dark:to-purple-500">
+                <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500">
                   Pathmika
                 </h2>
                 {navItems.map((item) => (
@@ -107,7 +112,7 @@ export function Header() {
                     <Link href={item.href} onClick={() => setIsOpen(false)}>
                       <Button
                         variant="ghost"
-                        className="w-full text-left text-gray-600 hover:text-gray-900 hover:bg-blue-200/20 dark:text-gray-300 dark:hover:text-white dark:hover:bg-blue-500/20 transition-all duration-300"
+                        className="w-full text-left text-gray-800 hover:text-black hover:bg-cyan-200/30 dark:text-gray-200 dark:hover:text-white dark:hover:bg-cyan-500/30 transition-all duration-300"
                       >
                         {item.label}
                       </Button>

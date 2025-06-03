@@ -15,7 +15,9 @@
     "projects": "Projects",
     "achievements": "Achievements",
     "extracurricular": "Extracurricular",
-    "contact": "Contact"
+    "contact": "Contact",
+    "menuTitle": "Navigation Menu",
+    "menuDescription": "Main navigation menu for Pathmika’s portfolio"
   },
   "pageTitle": {
     "about": "About Me",
