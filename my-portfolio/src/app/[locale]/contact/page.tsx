@@ -50,7 +50,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-16 px-4">
+    <div className="min-h-screen flex flex-col max-w-xl mx-auto py-16 px-4">
       <h1 className="text-4xl font-bold mb-8 text-center">Contact Me</h1>
 
       <form onSubmit={handleSubmit} className="space-y-6">
