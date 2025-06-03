@@ -5,11 +5,13 @@ import { getTranslations } from 'next-intl/server';
 import AboutClient from './_components/AboutClient';
 
 interface Props {
-  params: { locale: string };
+  params: Promise<{ locale: string }>; // ✅ App Router 15+ correct
 }
 
 export default async function AboutPage({ params }: Props) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'pageTitle' });
+  const { locale } = await params; // ✅ Await params (safe!)
+
+  const t = await getTranslations({ locale, namespace: 'pageTitle' });
   const profile = await getProfile();
 
   return (
