@@ -8,7 +8,7 @@ interface Achievement {
 }
 
 interface Props {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }
 
 export default async function AchievementsPage({ params }: Props) {
