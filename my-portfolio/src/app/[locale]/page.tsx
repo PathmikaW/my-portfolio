@@ -2,7 +2,7 @@ import { getProfile } from '@/lib/api';
 import HomeClient from './_components/HomeClient';
 
 interface Props {
-  params: Promise<{ locale: string }>;
+  params: { locale: string };
 }
 
 export default async function HomePage({ params }: Props) {
