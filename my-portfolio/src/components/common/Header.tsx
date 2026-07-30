@@ -1,23 +1,26 @@
 'use client';
 
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import ThemeToggle from '@/components/common/ThemeToggle';
 import LanguageToggle from '@/components/common/LanguageToggle';
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { type LinkProps } from 'next/link';
-import { useRouter } from 'next/navigation';  // ✅ Import router
+import { useRouter } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export function Header() {
   const locale = useLocale();
+  const pathname = usePathname();
   const t = useTranslations('nav');
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();  // ✅ Initialize router
+  const router = useRouter();
 
   const navItems: { href: LinkProps['href']; label: string }[] = [
     { href: `/${locale}`, label: t('home') },
@@ -30,31 +33,35 @@ export function Header() {
     { href: `/${locale}/contact`, label: t('contact') },
   ];
 
-  // ✅ Prefetch all routes on first mount
-  useEffect(() => {
-    navItems.forEach((item) => {
-      router.prefetch(item.href as string);
-    });
-  }, [locale]);  // locale as dependency → if user changes language, it refetches new routes
+  const prefetchAll = useCallback(() => {
+    navItems.forEach((item) => router.prefetch(item.href as string));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locale, router]);
 
-  const navVariants = {
+  useEffect(() => {
+    prefetchAll();
+  }, [prefetchAll]);
+
+  const navVariants: Variants = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, staggerChildren: 0.1 } },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: -10 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
 
-  const sidebarVariants = {
+  const sidebarVariants: Variants = {
     hidden: { x: '-100%' },
     visible: { x: 0, transition: { duration: 0.3, ease: 'easeInOut' } },
   };
 
+  const isActive = (href: string) => pathname === href;
+
   return (
     <motion.header
-      className="sticky top-0 z-50 bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-cyan-400/20 dark:border-cyan-400/20 flex justify-between items-center py-4 px-4 sm:px-6"
+      className="sticky top-0 z-50 bg-white/90 dark:bg-black/80 backdrop-blur-xl border-b border-accent-blue/20 flex justify-between items-center py-3.5 px-4 sm:px-6"
       initial="hidden"
       animate="visible"
       variants={navVariants}
@@ -62,7 +69,7 @@ export function Header() {
       <Link href={`/${locale}`}>
         <motion.h1
           variants={itemVariants}
-          className="text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500"
+          className="font-display text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple"
         >
           Pathmika
         </motion.h1>
@@ -70,9 +77,9 @@ export function Header() {
 
       <div className="flex items-center gap-2 sm:gap-4">
         {/* Desktop Navigation */}
-        <div className="hidden sm:block">
+        <div className="hidden lg:block">
           <NavigationMenu>
-            <NavigationMenuList className="flex flex-wrap gap-2 sm:gap-3">
+            <NavigationMenuList className="flex flex-wrap gap-1">
               {navItems.map((item) => (
                 <NavigationMenuItem key={String(item.href)}>
                   <NavigationMenuLink asChild>
@@ -80,7 +87,10 @@ export function Header() {
                       <Link href={item.href}>
                         <Button
                           variant="ghost"
-                          className="text-gray-800 hover:text-black hover:bg-cyan-200/30 dark:text-gray-200 dark:hover:text-white dark:hover:bg-cyan-500/30 transition-all duration-300 text-sm sm:text-base"
+                          className={cn(
+                            'relative text-gray-800 hover:text-black hover:bg-accent-blue/10 dark:text-gray-200 dark:hover:text-white transition-all duration-300 text-sm',
+                            isActive(String(item.href)) && 'text-accent-blue font-semibold'
+                          )}
                         >
                           {item.label}
                         </Button>
@@ -93,8 +103,8 @@ export function Header() {
           </NavigationMenu>
         </div>
 
-        {/* Mobile Hamburger Menu */}
-        <div className="sm:hidden">
+        {/* Mobile / Tablet Hamburger Menu */}
+        <div className="lg:hidden">
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="text-gray-800 hover:text-black dark:text-gray-200 dark:hover:text-white">
@@ -105,7 +115,7 @@ export function Header() {
               side="left"
               title={t('menuTitle')}
               description={t('menuDescription')}
-              className="w-64 bg-gray-100 dark:bg-gray-900 border-r border-cyan-400/20 p-4"
+              className="w-64 bg-gray-100 dark:bg-gray-900 border-r border-accent-blue/20 p-4"
             >
               <motion.div
                 initial="hidden"
@@ -113,7 +123,7 @@ export function Header() {
                 variants={sidebarVariants}
                 className="flex flex-col gap-4"
               >
-                <h2 className="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500">
+                <h2 className="font-display text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">
                   Pathmika
                 </h2>
                 {navItems.map((item) => (
@@ -121,7 +131,10 @@ export function Header() {
                     <Link href={item.href} onClick={() => setIsOpen(false)}>
                       <Button
                         variant="ghost"
-                        className="w-full text-left text-gray-800 hover:text-black hover:bg-cyan-200/30 dark:text-gray-200 dark:hover:text-white dark:hover:bg-cyan-500/30 transition-all duration-300"
+                        className={cn(
+                          'w-full text-left text-gray-800 hover:text-black hover:bg-accent-blue/10 dark:text-gray-200 dark:hover:text-white transition-all duration-300',
+                          isActive(String(item.href)) && 'text-accent-blue font-semibold'
+                        )}
                       >
                         {item.label}
                       </Button>
