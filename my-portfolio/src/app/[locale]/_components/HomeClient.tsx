@@ -123,8 +123,8 @@ export default function HomeClient({ profile, locale }: Props) {
           <ScrollItem>
             <BentoGridItem>
               <FolderGit2 className="size-6 text-accent-green mb-3" />
-              <p className="font-display text-2xl font-bold">12+</p>
-              <p className="text-sm text-muted-foreground mt-1">Real projects, delivered end-to-end</p>
+              <p className="font-display text-2xl font-bold">25+</p>
+              <p className="text-sm text-muted-foreground mt-1">Client &amp; product engagements</p>
             </BentoGridItem>
           </ScrollItem>
           <ScrollItem>
