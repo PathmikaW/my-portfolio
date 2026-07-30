@@ -1,10 +1,10 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
-import { useEffect, useState } from 'react';
+import { ScrollSection, ScrollItem } from '@/components/effects/text-reveal';
+import { BentoGrid, BentoGridItem } from '@/components/effects/bento-grid';
+import { Code2, Languages as LanguagesIcon } from 'lucide-react';
 
 interface Profile {
   name: string;
@@ -19,61 +19,52 @@ interface Props {
 }
 
 export default function AboutClient({ profile }: Props) {
-  const tAbout = useTranslations('about'); // ✅ Safe in client
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    // Optional loading state if needed
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="space-y-4">
-        <Skeleton className="h-6 w-1/3" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-      </div>
-    );
-  }
+  const tAbout = useTranslations('about');
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{profile.name} - {profile.title}</CardTitle>
-      </CardHeader>
-      <CardContent className="space-y-4">
-        <p className="text-lg leading-relaxed text-muted-foreground">
-          {profile.summary}
-        </p>
-
-        <div>
-          <h2 className="text-xl font-semibold mb-2">
-            {tAbout('skills')}
+    <ScrollSection className="space-y-10">
+      <ScrollItem>
+        <div className="rounded-xl border border-accent-blue/20 bg-white/90 dark:bg-black/70 backdrop-blur-lg p-6 sm:p-8 shadow-md shadow-accent-blue/5">
+          <h2 className="font-display text-2xl sm:text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">
+            {profile.name}
           </h2>
-          <div className="flex flex-wrap gap-2">
-            {profile.skills.map((skill, index) => (
-              <Badge key={index} variant="outline">
-                {skill}
-              </Badge>
-            ))}
-          </div>
+          <p className="mt-1 text-lg text-muted-foreground">{profile.title}</p>
+          <p className="mt-4 text-base sm:text-lg leading-relaxed text-gray-700 dark:text-gray-300">
+            {profile.summary}
+          </p>
         </div>
+      </ScrollItem>
 
-        <div>
-          <h2 className="text-xl font-semibold mb-2">
-            {tAbout('languages')}
-          </h2>
-          <ul className="space-y-1 pl-4 list-disc text-base text-muted-foreground">
-            {profile.languages.map((lang, index) => (
-              <li key={index}>
-                <span className="font-medium">{lang.language}</span> — {lang.level}
-              </li>
-            ))}
-          </ul>
+      <ScrollItem>
+        <p className="font-mono text-xs text-accent-green mb-1">{'// skills'}</p>
+        <div className="flex items-center gap-2 mb-4">
+          <Code2 className="size-5 text-accent-blue" />
+          <h3 className="font-display text-xl font-semibold">{tAbout('skills')}</h3>
         </div>
-      </CardContent>
-    </Card>
+        <div className="flex flex-wrap gap-2">
+          {profile.skills.map((skill) => (
+            <Badge key={skill} variant="outline" className="text-sm py-1 px-3">
+              {skill}
+            </Badge>
+          ))}
+        </div>
+      </ScrollItem>
+
+      <ScrollItem>
+        <p className="font-mono text-xs text-accent-green mb-1">{'// languages'}</p>
+        <div className="flex items-center gap-2 mb-4">
+          <LanguagesIcon className="size-5 text-accent-purple" />
+          <h3 className="font-display text-xl font-semibold">{tAbout('languages')}</h3>
+        </div>
+        <BentoGrid className="sm:grid-cols-2 lg:grid-cols-2">
+          {profile.languages.map((lang) => (
+            <BentoGridItem key={lang.language}>
+              <p className="font-display font-semibold">{lang.language}</p>
+              <p className="text-sm text-muted-foreground mt-1">{lang.level}</p>
+            </BentoGridItem>
+          ))}
+        </BentoGrid>
+      </ScrollItem>
+    </ScrollSection>
   );
 }
