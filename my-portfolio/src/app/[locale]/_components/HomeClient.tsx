@@ -73,7 +73,7 @@ export default function HomeClient({ profile, locale }: Props) {
             </CardItem>
 
             <CardItem translateZ={40}>
-              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple dark:drop-shadow-[0_0_16px_rgba(0,255,65,0.3)]">
                 {t('title')}
               </h1>
             </CardItem>

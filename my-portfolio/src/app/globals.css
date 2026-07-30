@@ -8,6 +8,8 @@
   --color-foreground: var(--foreground);
   --color-accent-blue: var(--accent-blue);
   --color-accent-purple: var(--accent-purple);
+  --color-btn-from: var(--btn-solid-from);
+  --color-btn-to: var(--btn-solid-to);
   --color-accent-green: var(--accent-green);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
@@ -51,6 +53,9 @@
   /* Terminal/Matrix palette: --accent-blue = primary (phosphor green), --accent-purple = secondary (teal, blends with green in gradients), --accent-green = tertiary (amber, contrast pop) */
   --accent-blue: #15803d;
   --accent-purple: #0f766e;
+  --btn-solid-from: #16a34a;
+  --btn-solid-to: #0d9488;
+  --btn-glow: rgba(21, 128, 61, 0.35);
   --accent-green: #b45309;
   --background: oklch(0.99 0.005 150);
   --foreground: oklch(0.15 0.02 150);
@@ -89,6 +94,9 @@
   /* Terminal/Matrix palette: phosphor green primary, teal secondary, amber tertiary */
   --accent-blue: #00ff41;
   --accent-purple: #2dd4bf;
+  --btn-solid-from: #15803d;
+  --btn-solid-to: #0f766e;
+  --btn-glow: rgba(0, 255, 65, 0.45);
   --accent-green: #ffb000;
   --background: oklch(0.1 0.015 150);
   --foreground: oklch(0.92 0.03 150);

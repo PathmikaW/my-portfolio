@@ -69,7 +69,7 @@ export function Header() {
       <Link href={`/${locale}`}>
         <motion.h1
           variants={itemVariants}
-          className="font-display text-xl sm:text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple"
+          className="font-display text-xl sm:text-2xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple dark:drop-shadow-[0_0_10px_rgba(0,255,65,0.25)]"
         >
           Pathmika
         </motion.h1>
