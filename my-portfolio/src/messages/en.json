@@ -65,9 +65,11 @@
   "projects": {
     "loading": "Loading projects...",
     "techStack": "Tech Stack",
-    "visitProject": "Visit Project →",
-    "viewMore": "View More",
-    "hideDetails": "Hide Details",
-    "noDetails": "No additional details available."
+    "personalProjectsTab": "Personal Projects",
+    "industryExperienceTab": "Industry Experience",
+    "viewOnGithub": "View on GitHub",
+    "liveDemo": "Live Demo",
+    "viewHighlights": "View Highlights",
+    "hideHighlights": "Hide Highlights"
   }
 }

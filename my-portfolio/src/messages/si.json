@@ -66,9 +66,11 @@
   "projects": {
     "loading": "ව්‍යාපෘති පූරණය වෙමින් පවතී...",
     "techStack": "කාර්ය මණ්ඩලය",
-    "visitProject": "ව්‍යාපෘතිය බලන්න →",
-    "viewMore": "වැඩිදුර බලන්න",
-    "hideDetails": "විස්තර සඟවන්න",
-    "noDetails": "අතිරේක විස්තර නොමැත."
+    "personalProjectsTab": "පුද්ගලික ව්‍යාපෘති",
+    "industryExperienceTab": "කර්මාන්ත අත්දැකීම්",
+    "viewOnGithub": "GitHub හි බලන්න",
+    "liveDemo": "සජීවී පෙන්වීම",
+    "viewHighlights": "විශේෂාංග බලන්න",
+    "hideHighlights": "විශේෂාංග සඟවන්න"
   }
 }
