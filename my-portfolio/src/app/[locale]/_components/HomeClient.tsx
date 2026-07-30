@@ -2,19 +2,23 @@
 
 import { useTranslations } from 'next-intl';
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import { ShimmerButton } from '@/components/effects/shimmer-button';
+import { CardContainer, CardBody, CardItem } from '@/components/effects/3d-card';
+import { BentoGrid, BentoGridItem } from '@/components/effects/bento-grid';
+import { ScrollSection, ScrollItem } from '@/components/effects/text-reveal';
+import { Badge } from '@/components/ui/badge';
 import { IMAGES } from '@/lib/images';
+import { personalProjects } from '@/data/projects';
 import Link from 'next/link';
 import Image from 'next/image';
-import Tilt from 'react-parallax-tilt';
-import { motion, AnimatePresence } from 'framer-motion';
+import { GraduationCap, Briefcase, FolderGit2, Sparkles, ArrowUpRight, Github, ExternalLink } from 'lucide-react';
 
 interface Profile {
   name: string;
   title: string;
   summary: string;
+  skills: string[];
 }
 
 interface Props {
@@ -26,189 +30,170 @@ export default function HomeClient({ profile, locale }: Props) {
   const t = useTranslations('home');
   const [isImageOpen, setIsImageOpen] = useState(false);
 
-  const containerVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.8, ease: 'easeOut', staggerChildren: 0.2 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
-
-  const pulseVariants = {
-    pulse: {
-      boxShadow: [
-        '0 0 0px rgba(34, 211, 238, 0)',
-        '0 0 20px rgba(34, 211, 238, 0.5)',
-        '0 0 0px rgba(34, 211, 238, 0)',
-      ],
-      scale: [1, 1.02, 1],
-    },
-  };
-
-  const cardVariants = {
-    hover: {
-      boxShadow: '0 0 30px rgba(34, 211, 238, 0.3)',
-      transition: { duration: 0.3 },
-    },
-  };
-
-  const particles = Array.from({ length: 20 }).map((_, i) => ({
-    id: i,
-    left: `${(i % 5) * 25 + 10}%`,
-    top: `${Math.floor(i / 5) * 25 + 10}%`,
-  }));
-
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 py-16 text-center relative overflow-hidden">
-      <motion.div
-        className="max-w-3xl w-full"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-      >
-        <Tilt tiltMaxAngleX={10} tiltMaxAngleY={10} glareEnable={true} glareMaxOpacity={0.3} glareColor="#ffffff">
-          <motion.div
-            variants={cardVariants}
-            whileHover="hover"
-          >
-            <Card className="bg-gray-200/70 dark:bg-gray-800/70 backdrop-blur-lg border border-cyan-400/30 dark:border-cyan-400/30 shadow-2xl shadow-cyan-500/30 dark:shadow-cyan-500/30">
-              <CardHeader>
-                <Sheet open={isImageOpen} onOpenChange={setIsImageOpen}>
-                  <SheetTrigger asChild>
-                    <motion.div
-                      variants={itemVariants}
-                      className="flex justify-center mb-6 cursor-pointer"
-                      animate={{
-                        ...pulseVariants.pulse,
-                        transition: {
-                          duration: 2,
-                          repeat: Infinity,
-                          repeatType: 'loop',
-                          ease: 'easeInOut',
-                        },
-                      }}
-                    >
-                      <Image
-                        src={IMAGES.profile}
-                        alt="Profile picture of Pathmika Weerarathna"
-                        width={150}
-                        height={150}
-                        className="rounded-full border-4 border-cyan-400/50 dark:border-cyan-400/50 shadow-lg"
-                        priority
-                      />
-                    </motion.div>
-                  </SheetTrigger>
-                  <SheetContent
-                    side="bottom"
-                    className="flex items-center justify-center bg-transparent backdrop-blur-sm"
+    <div className="px-4 sm:px-6 py-16 sm:py-20 space-y-20">
+      {/* Hero */}
+      <section className="flex flex-col items-center text-center max-w-4xl mx-auto">
+        <CardContainer className="w-full">
+          <CardBody className="w-full rounded-2xl bg-white/70 dark:bg-black/50 backdrop-blur-md p-8 sm:p-10 border border-accent-blue/10">
+            <CardItem translateZ={10} className="mb-4 flex justify-center">
+              <p className="font-mono text-sm text-accent-green">
+                <span className="text-muted-foreground">$</span> whoami
+                <span className="animate-cursor-blink text-accent-blue">▍</span>
+              </p>
+            </CardItem>
+            <CardItem translateZ={60} className="flex justify-center mb-6">
+              <Sheet open={isImageOpen} onOpenChange={setIsImageOpen}>
+                <SheetTrigger asChild>
+                  <button
+                    type="button"
+                    aria-label="View profile picture"
+                    className="rounded-full ring-4 ring-accent-blue/40 shadow-xl shadow-accent-blue/20 cursor-pointer"
                   >
                     <Image
                       src={IMAGES.profile}
-                      alt="Profile picture of Pathmika Weerarathna"
-                      width={400}
-                      height={400}
-                      className="rounded-full border-8 border-cyan-400/50 dark:border-cyan-400/50 shadow-xl"
+                      alt={`Profile picture of ${profile.name}`}
+                      width={150}
+                      height={150}
+                      className="rounded-full"
+                      priority
                     />
-                  </SheetContent>
-                </Sheet>
-                <motion.div variants={itemVariants}>
-                  <CardTitle className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-purple-600 dark:from-cyan-400 dark:to-purple-500">
-                    {`Hi, I'm ${profile.name}`}
-                  </CardTitle>
-                </motion.div>
-              </CardHeader>
-              <CardContent className="space-y-6">
-                <motion.p
-                  variants={itemVariants}
-                  className="text-base sm:text-lg md:text-xl text-gray-800 dark:text-gray-200 leading-relaxed"
-                >
-                  {profile.summary}
-                </motion.p>
-                <motion.div variants={itemVariants} className="flex flex-wrap justify-center gap-3">
-                  <Link href={`/${locale}/about`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(34, 211, 238, 0.5)' }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white dark:text-white transition-all duration-300 text-sm sm:text-base">
-                        {t('aboutButton')}
-                      </Button>
-                    </motion.div>
-                  </Link>
-                  <Link href={`/${locale}/projects`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(34, 211, 238, 0.5)' }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Button className="bg-gradient-to-r from-cyan-500 to-purple-500 hover:from-cyan-600 hover:to-purple-600 text-white dark:text-white transition-all duration-300 text-sm sm:text-base">
-                        {t('projectsButton')}
-                      </Button>
-                    </motion.div>
-                  </Link>
-                  <Link href={`/${locale}/contact`}>
-                    <motion.div
-                      whileHover={{ scale: 1.05, boxShadow: '0 0 15px rgba(34, 211, 238, 0.5)' }}
-                      whileTap={{ scale: 0.95 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Button
-                        variant="outline"
-                        className="border-cyan-500 text-cyan-600 hover:bg-cyan-500/20 dark:border-cyan-400 dark:text-cyan-400 dark:hover:bg-cyan-500/20 transition-all duration-300 text-sm sm:text-base"
-                      >
-                        {t('contactButton')}
-                      </Button>
-                    </motion.div>
-                  </Link>
-                </motion.div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </Tilt>
-      </motion.div>
+                  </button>
+                </SheetTrigger>
+                <SheetContent side="bottom" className="flex items-center justify-center bg-transparent backdrop-blur-sm">
+                  <Image
+                    src={IMAGES.profile}
+                    alt={`Profile picture of ${profile.name}`}
+                    width={400}
+                    height={400}
+                    className="rounded-full border-8 border-accent-blue/50 shadow-xl"
+                  />
+                </SheetContent>
+              </Sheet>
+            </CardItem>
 
-      {/* Animated Background Particles */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <AnimatePresence>
-          {particles.map((particle) => (
-            <motion.div
-              key={particle.id}
-              className="absolute w-2 h-2 bg-gradient-to-r from-cyan-400 to-magenta-500 rounded-full"
-              style={{
-                left: particle.left,
-                top: particle.top,
-              }}
-              initial="hidden"
-              animate="float"
-              variants={{
-                float: {
-                  y: [0, -20, 0],
-                  x: [0, 10, 0],
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.6, 0.3],
-                  transition: {
-                    duration: 2 + (particle.id % 3),
-                    repeat: Infinity,
-                    repeatType: 'loop',
-                    ease: 'easeInOut',
-                  },
-                },
-              }}
-            />
+            <CardItem translateZ={40}>
+              <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-accent-blue to-accent-purple">
+                {t('title')}
+              </h1>
+            </CardItem>
+
+            <CardItem translateZ={30}>
+              <p className="mt-3 text-lg sm:text-xl font-medium text-gray-700 dark:text-gray-300">{profile.title}</p>
+            </CardItem>
+
+            <CardItem translateZ={20}>
+              <p className="mt-4 max-w-2xl mx-auto text-base sm:text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+                {profile.summary}
+              </p>
+            </CardItem>
+
+            <CardItem translateZ={30} className="mt-8 flex flex-wrap justify-center gap-3">
+              <Link href={`/${locale}/about`}>
+                <ShimmerButton>{t('aboutButton')}</ShimmerButton>
+              </Link>
+              <Link href={`/${locale}/projects`}>
+                <ShimmerButton>{t('projectsButton')}</ShimmerButton>
+              </Link>
+              <Link href={`/${locale}/contact`}>
+                <ShimmerButton variant="outline">{t('contactButton')}</ShimmerButton>
+              </Link>
+            </CardItem>
+          </CardBody>
+        </CardContainer>
+      </section>
+
+      {/* Quick facts bento grid */}
+      <ScrollSection className="max-w-5xl mx-auto">
+        <BentoGrid>
+          <ScrollItem>
+            <BentoGridItem>
+              <Briefcase className="size-6 text-accent-blue mb-3" />
+              <p className="font-display text-2xl font-bold">~5 Years</p>
+              <p className="text-sm text-muted-foreground mt-1">Production engineering experience</p>
+            </BentoGridItem>
+          </ScrollItem>
+          <ScrollItem>
+            <BentoGridItem>
+              <GraduationCap className="size-6 text-accent-purple mb-3" />
+              <p className="font-display text-2xl font-bold">MSc in AI</p>
+              <p className="text-sm text-muted-foreground mt-1">University of Moratuwa (Reading)</p>
+            </BentoGridItem>
+          </ScrollItem>
+          <ScrollItem>
+            <BentoGridItem>
+              <FolderGit2 className="size-6 text-accent-green mb-3" />
+              <p className="font-display text-2xl font-bold">12+</p>
+              <p className="text-sm text-muted-foreground mt-1">Real projects, delivered end-to-end</p>
+            </BentoGridItem>
+          </ScrollItem>
+          <ScrollItem>
+            <BentoGridItem>
+              <Sparkles className="size-6 text-accent-blue mb-3" />
+              <p className="font-display text-2xl font-bold">2023</p>
+              <p className="text-sm text-muted-foreground mt-1">Emerging Employee of the Year</p>
+            </BentoGridItem>
+          </ScrollItem>
+          <ScrollItem className="sm:col-span-2 lg:col-span-4">
+            <BentoGridItem colSpan={2} className="sm:col-span-2 lg:col-span-4">
+              <p className="font-mono text-xs text-accent-green mb-3">{'// core_stack'}</p>
+              <div className="flex flex-wrap gap-2">
+                {profile.skills.map((skill) => (
+                  <Badge key={skill} variant="outline">
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            </BentoGridItem>
+          </ScrollItem>
+        </BentoGrid>
+      </ScrollSection>
+
+      {/* Featured projects teaser */}
+      <ScrollSection className="max-w-5xl mx-auto space-y-6">
+        <ScrollItem className="flex items-center justify-between">
+          <div>
+            <p className="font-mono text-xs text-accent-green mb-1">{'// featured_projects'}</p>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold">Featured Projects</h2>
+          </div>
+          <Link
+            href={`/${locale}/projects`}
+            className="inline-flex items-center gap-1 text-sm font-medium text-accent-blue hover:underline"
+          >
+            View all <ArrowUpRight className="size-4" />
+          </Link>
+        </ScrollItem>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          {personalProjects.slice(0, 3).map((project) => (
+            <ScrollItem key={project.id}>
+              <div className="group h-full rounded-xl border border-accent-blue/20 bg-white/90 dark:bg-black/70 backdrop-blur-lg p-5 shadow-md shadow-accent-blue/5 transition-all duration-300 hover:shadow-accent-blue/20 hover:-translate-y-1">
+                <h3 className="font-display font-semibold text-accent-blue">{project.title}</h3>
+                <p className="mt-2 text-sm text-muted-foreground line-clamp-3">{project.description}</p>
+                <div className="mt-4 flex gap-3">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:underline"
+                  >
+                    <Github className="size-3.5" /> Code
+                  </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-xs font-medium text-accent-blue hover:underline"
+                    >
+                      <ExternalLink className="size-3.5" /> Live
+                    </a>
+                  )}
+                </div>
+              </div>
+            </ScrollItem>
           ))}
-        </AnimatePresence>
-        <motion.div
-          className="absolute inset-0 bg-gradient-to-r from-cyan-300/10 to-magenta-300/10 dark:from-cyan-500/10 dark:to-magenta-500/10"
-          animate={{ x: [0, 50, 0], transition: { duration: 30, repeat: Infinity } }}
-        />
-      </div>
+        </div>
+      </ScrollSection>
     </div>
   );
 }

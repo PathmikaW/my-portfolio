@@ -1,4 +1,4 @@
-import { getProfile } from '@/lib/api';
+import { profile } from '@/data/profile';
 import HomeClient from './_components/HomeClient';
 
 interface Props {
@@ -7,7 +7,6 @@ interface Props {
 
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
-  const profile = await getProfile();
 
   return (
     <HomeClient profile={profile} locale={locale} />
