@@ -11,7 +11,7 @@ export const experience: Experience[] = [
     role: 'Associate Tech Lead',
     period: 'Jan 2026 – Present',
     description:
-      'Lead, mentor, and scale a cross-functional engineering team of 10+ developers, driving solution design and delivery across mobile, web, AI/ML, and data-platform initiatives. Serve as technical subject-matter expert for pre-sales engagements, producing architecture proposals and technical validation. Lead an AI/ML R&D program applying machine-learning-driven detection to an existing fraud-prevention product, and a centralized data-reporting platform spanning backend pipelines and web dashboards.',
+      'Lead, mentor, and scale a cross-functional engineering team of 10+ developers, driving solution design and delivery across mobile, web, AI/ML, and data-platform initiatives. Serve as technical subject-matter expert for pre-sales engagements, producing architecture proposals and technical validation. Lead an AI/ML R&D program applying machine-learning-driven detection to an existing fraud-prevention product, and a centralized data-reporting platform spanning backend pipelines and web dashboards. Leverage AI tools throughout the design and development workflow to boost personal productivity, enabling faster turnaround and higher-quality output.',
   },
   {
     company: 'Omobio (Pvt) Ltd.',
