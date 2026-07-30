@@ -10,6 +10,7 @@ const config = {
       fontFamily: {
         sans: ["var(--font-geist-sans)", "ui-sans-serif", "sans-serif"],
         mono: ["var(--font-geist-mono)", "ui-monospace", "monospace"],
+        display: ["var(--font-display)", "ui-sans-serif", "sans-serif"],
       },
       colors: {
         background: "var(--background)",

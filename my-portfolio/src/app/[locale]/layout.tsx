@@ -1,5 +1,6 @@
 import { NextIntlClientProvider } from 'next-intl';
 import { notFound } from 'next/navigation';
+import { Geist, Geist_Mono, Space_Grotesk } from 'next/font/google';
 import { locales } from '@/i18n/config';
 import { getMessages } from '@/i18n/request';
 import { AppContextProvider } from '@/context/AppContext';
@@ -7,6 +8,10 @@ import { Header } from '@/components/common/Header';
 import { Footer } from '@/components/common/Footer';
 import Background from '@/components/common/Background'; // Import the new client component
 import '../globals.css';
+
+const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
+const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
+const spaceGrotesk = Space_Grotesk({ variable: '--font-display', subsets: ['latin'], weight: ['500', '600', '700'] });
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -34,7 +39,9 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen relative">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} flex flex-col min-h-screen relative`}
+      >
         <Background /> {/* Render the client-side background component */}
         <NextIntlClientProvider locale={locale} messages={messages}>
           <AppContextProvider>
