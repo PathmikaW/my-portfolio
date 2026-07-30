@@ -7,7 +7,7 @@ interface Experience {
   company: string;
   role: string;
   period: string;
-  description: string;
+  highlights: string[];
 }
 
 interface Props {
@@ -27,7 +27,11 @@ export default function ExperienceClient({ experience }: Props) {
                 <span className="text-xs font-medium text-muted-foreground italic">{exp.period}</span>
               </div>
               <p className="text-sm text-gray-600 dark:text-gray-400 mt-0.5">{exp.company}</p>
-              <p className="mt-3 text-sm sm:text-base text-muted-foreground leading-relaxed">{exp.description}</p>
+              <ul className="mt-3 space-y-2 list-disc pl-5 text-sm sm:text-base text-muted-foreground leading-relaxed">
+                {exp.highlights.map((highlight, i) => (
+                  <li key={i}>{highlight}</li>
+                ))}
+              </ul>
             </TimelineItem>
           </ScrollItem>
         ))}
