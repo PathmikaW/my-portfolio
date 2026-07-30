@@ -41,12 +41,14 @@ export default function AboutClient({ profile }: Props) {
           <Code2 className="size-5 text-accent-blue" />
           <h3 className="font-display text-xl font-semibold">{tAbout('skills')}</h3>
         </div>
-        <div className="flex flex-wrap gap-2">
-          {profile.skills.map((skill) => (
-            <Badge key={skill} variant="outline" className="text-sm py-1 px-3">
-              {skill}
-            </Badge>
-          ))}
+        <div className="rounded-xl border border-accent-blue/20 bg-white/90 dark:bg-black/70 backdrop-blur-lg p-6 sm:p-8 shadow-md shadow-accent-blue/5">
+          <div className="flex flex-wrap gap-2">
+            {profile.skills.map((skill) => (
+              <Badge key={skill} variant="outline" className="text-sm py-1 px-3">
+                {skill}
+              </Badge>
+            ))}
+          </div>
         </div>
       </ScrollItem>
 
