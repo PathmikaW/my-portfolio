@@ -2,18 +2,6 @@
 
 import { NextResponse } from 'next/server';
 
-const contactInfo = {
-  phone: '+94 723675513',
-  email: 'pathmikaweerarathna@gmail.com',
-  location: 'Gonapola, Western Province, Sri Lanka',
-  linkedin: 'https://www.linkedin.com/in/pathmika-weerarathna',
-  facebook: 'https://www.facebook.com/pathmika.weerarathna',
-};
-
-export async function GET() {
-  return NextResponse.json(contactInfo);
-}
-
 export async function POST(req: Request) {
   try {
     const body = await req.json();
