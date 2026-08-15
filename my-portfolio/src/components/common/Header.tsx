@@ -27,6 +27,7 @@ export function Header() {
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/experience`, label: t('experience') },
     { href: `/${locale}/education`, label: t('education') },
+    { href: `/${locale}/certifications`, label: t('certifications') },
     { href: `/${locale}/projects`, label: t('projects') },
     { href: `/${locale}/achievements`, label: t('achievements') },
     { href: `/${locale}/extracurricular`, label: t('extracurricular') },
