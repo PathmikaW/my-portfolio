@@ -14,6 +14,6 @@ export const achievements: Achievement[] = [
   {
     title: "Director's List Awardee",
     year: '2021',
-    description: 'University of Colombo — achieved GPA above 3.7 in first academic year.',
+    description: 'University of Colombo - achieved GPA above 3.7 in first academic year.',
   },
 ];

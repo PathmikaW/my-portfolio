@@ -8,9 +8,9 @@ export interface Profile {
 
 export const profile: Profile = {
   name: 'Pathmika Weerarathna',
-  title: 'Associate Tech Lead — Full-Stack Engineer (Mobile & Web), AI/ML Exposure',
+  title: 'Associate Tech Lead - Full-Stack Engineer (Mobile & Web), AI/ML Exposure',
   summary:
-    'Full-stack engineer and Associate Tech Lead with five years of experience delivering production mobile and web applications, having grown through every engineering level at the same company. Core strengths in React Native mobile development (native modules, app security, monetization) and Next.js/React web platforms, backed by solid REST API and backend engineering. Alongside this, gained hands-on AI/ML exposure self-initiating and leading a fraud-detection R&D initiative spanning NLP embeddings, GenAI, and ensemble ML models. Deepening technical foundations through an MSc in Artificial Intelligence at the University of Moratuwa. Recognized as Emerging Employee of the Year (2023).',
+    'Full-stack engineer and Associate Tech Lead with five years of experience delivering production mobile and web applications, having grown through every engineering level at the same company. Core strengths in React Native mobile development (native modules, app security, monetization) and Next.js/React web platforms, backed by REST API and backend engineering. Alongside this, gained hands-on AI/ML exposure self-initiating and leading a fraud-detection R&D initiative spanning NLP embeddings, GenAI, and ensemble ML models. Deepening technical foundations through an MSc in Artificial Intelligence at the University of Moratuwa. Recognized as Emerging Employee of the Year (2023).',
   skills: [
     'React Native',
     'Android (Java/Kotlin)',
