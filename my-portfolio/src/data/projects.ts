@@ -114,7 +114,7 @@ export const industryProjects: IndustryProject[] = [
     name: 'Vodafone Selfcare (Fiji)',
     category: 'Mobile',
     context: 'Production self-care app for Vodafone Fiji - major React Native version upgrade and release engineering.',
-    techStack: ['React Native', 'New Architecture/TurboModules', 'Redux-Saga', 'Firebase Crashlytics'],
+    techStack: ['React Native', 'New Architecture/TurboModules', 'Redux', 'Firebase Crashlytics'],
     scopeNote: 'Scope: version upgrade, New Architecture scaffolding, and release engineering on an existing large codebase - not original feature design.',
     highlights: [
       'Led the React Native version upgrade from 0.59.3 to 0.70.5, scaffolding New Architecture plumbing (TurboModules, JSI) alongside the existing Java bridge.',
@@ -122,7 +122,7 @@ export const industryProjects: IndustryProject[] = [
       'Hardened the app for production release by auditing and removing dev-only console logging across ~15 feature modules, and produced multiple versioned release APK builds.',
       'Diagnosed and fixed conditional-rendering display bugs in the postpaid broadband balance-info UI.',
       'Performed field QA testing on production builds, reproducing and logging install/crash defects and data-display bugs.',
-      'Worked within a large, multi-year (2017-2024) production codebase built on Redux + Redux-Saga, React Navigation, and Firebase Analytics/Crashlytics.',
+      'Worked within a large, multi-year (2017-2024) production codebase built on Redux, React Navigation, and Firebase Analytics/Crashlytics.',
     ],
   },
   {
@@ -190,10 +190,10 @@ export const industryProjects: IndustryProject[] = [
     name: 'MDA - Dialog Device Management Platform',
     category: 'Web',
     context: "Dialog Axiata's Mobile Device Management platform.",
-    techStack: ['React', 'Redux-Saga', 'Material-UI', 'JavaScript'],
+    techStack: ['React', 'Redux', 'Material-UI', 'JavaScript'],
     scopeNote: 'Scope: contributed to the React admin-console frontend of an existing platform; the PHP backend and Erlang/OTP signaling core were owned by other teams.',
     highlights: [
-      "Contributed to the React (Material-UI, Redux-Saga) admin console of Dialog Axiata's Mobile Device Management (MDM) platform, a carrier-grade admin system also comprising a PHP Yii2 backend and an Erlang/OTP telecom-signaling core.",
+      "Contributed to the React admin console (Material-UI, Redux state management) of Dialog Axiata's Mobile Device Management (MDM) platform, a carrier-grade admin system also comprising a PHP Yii2 backend and an Erlang/OTP telecom-signaling core.",
       "Built device-management UI in the React admin console for the platform's device-blocking subsystem.",
       'Built UI for device-configuration and SMS-campaign scheduling features, including a GSM-7BIT/UTF-16 SMS segment counter.',
     ],
@@ -229,7 +229,7 @@ export const industryProjects: IndustryProject[] = [
     name: 'Dtel',
     category: 'Mobile',
     context: "React Native app for Dialog's fixed-line/home-telecom brand - security and infrastructure foundation.",
-    techStack: ['React Native', 'Redux-Saga', 'redux-persist', 'Firebase'],
+    techStack: ['React Native', 'Redux', 'redux-persist', 'Firebase'],
     scopeNote: 'Snapshot captures an early architecture/scaffolding phase - bullets focus on the security/infrastructure work actually present in the code.',
     highlights: [
       'Built the security and infrastructure layer for Dtel ahead of feature development.',

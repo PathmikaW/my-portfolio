@@ -39,7 +39,7 @@ export const experience: Experience[] = [
     period: 'May 2022 - Jan 2024',
     highlights: [
       'Led design and development of cross-platform mobile applications for multiple telecom and enterprise clients in React Native, managing releases across Play Store, App Store, and Huawei AppGallery.',
-      'Contributed to the React/Redux-Saga admin-console frontend of a carrier-grade device-management platform.',
+      'Contributed to the React admin-console frontend (Redux state management) of a carrier-grade device-management platform.',
       'Led a major React Native version upgrade of a production telecom self-care app across two major versions, with New Architecture scaffolding.',
       'Participated in pre-sales client engagement and contributed to ISO 27001 certification-readiness documentation and a company-wide Git branching standard, later delivered as an internal training program.',
       'Received the Emerging Employee of the Year Award (2023) for outstanding technical contribution.',
