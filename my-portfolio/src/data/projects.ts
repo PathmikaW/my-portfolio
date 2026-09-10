@@ -132,7 +132,7 @@ export const industryProjects: IndustryProject[] = [
     context: 'Multi-tenant telecom SMS-firewall AI/ML detection suite and business-intelligence platform, deployed across 8 on-prem operator sites.',
     techStack: ['Python', 'FastAPI', 'Next.js', 'XGBoost', 'CatBoost', 'SentenceTransformers', 'Ollama', 'Elasticsearch', 'Kibana', 'Logstash', 'Docker', 'GitLab CI/CD', 'PostgreSQL', 'Erlang/OTP'],
     highlights: [
-      'Lead this flagship AI/ML R&D initiative as Associate Tech Lead, extending the fraud-detection engine and reporting layer.',
+      'Led this flagship AI/ML R&D initiative as Associate Tech Lead, extending the fraud-detection engine and reporting layer.',
       'Architected and led end-to-end development of a modular SMS Firewall AI/ML Suite exposing REST APIs (FastAPI), enabling dynamic deployment of containerized detection modules for OTP-bypass, encoded-Unicode-pattern detection, phishing-URL detection, grey-route identification, and campaign detection, all integrated into a single codebase and controlled via a unified admin CMS.',
       'OTP-bypass / grey-route module (live deployment): combines Caesar-cipher/base64 CDR decryption, SentenceTransformer embeddings, and cosine-similarity matching against a 365-day rolling reference table to auto-block OTP-bypass and grey-route A2P traffic at ~378 messages/sec; the encoded-Unicode-pattern module layers in the same semantic-embedding approach.',
       'Phishing-URL detection module: an ensemble ML classifier combining XGBoost and CatBoost with SHAP explainability and Optuna hyperparameter tuning.',
@@ -153,7 +153,7 @@ export const industryProjects: IndustryProject[] = [
     context: 'Centralized web-based telecom data-reporting platform spanning backend pipelines through web dashboards.',
     techStack: ['Python', 'Celery', 'PostgreSQL', 'ClickHouse', 'Elasticsearch', 'Apache Superset', 'Prometheus', 'Grafana', 'Docker', 'GitHub Actions'],
     highlights: [
-      'Lead the SOR (Steering of Roaming) centralized reporting platform as a flagship initiative, architecting full-stack telecom data-reporting solutions from backend pipelines through web dashboards.',
+      'Led the SOR (Steering of Roaming) centralized reporting platform as a flagship initiative, architecting full-stack telecom data-reporting solutions from backend pipelines through web dashboards.',
       'Architected and directed implementation of a centralized web-based reporting platform, optimizing and processing large-scale telecom datasets using asynchronous task processing and message queues (Celery) with containerized deployment (Docker).',
       'Tech stack spans Python, Celery, PostgreSQL, ClickHouse, and Elasticsearch for data processing and storage, Apache Superset for BI dashboards, Prometheus and Grafana for monitoring, and GitHub Actions for CI/CD.',
     ],

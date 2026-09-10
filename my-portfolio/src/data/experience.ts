@@ -9,13 +9,14 @@ export const experience: Experience[] = [
   {
     company: 'Omobio (Pvt) Ltd.',
     role: 'Associate Tech Lead',
-    period: 'Jan 2026 – Present',
+    period: 'Jan 2026 – Sep 2026',
     highlights: [
-      'Lead, mentor, and scale a cross-functional engineering team of 10+ developers, driving solution design and delivery across mobile, web, AI/ML, and data-platform initiatives.',
-      'Leverage AI tools throughout design and development workflows to boost personal productivity, enabling faster turnaround, higher quality output, and more efficient day-to-day execution.',
-      'Serve as technical subject-matter expert for pre-sales engagements, producing architecture proposals and technical validation for clients across Africa, South Asia, and the Middle East.',
-      'Lead two flagship engineering initiatives: an AI/ML R&D program applying machine-learning-driven detection to an existing fraud-prevention product, and a centralized data-reporting platform spanning backend pipelines and web dashboards.',
-      'Manage client engagements end-to-end, from requirements gathering through production delivery.',
+      'Led, mentored, and scaled a cross-functional engineering team of 10+ developers, driving solution design and delivery across mobile, web, AI/ML, and data-platform initiatives.',
+      'Leveraged AI tools throughout design and development workflows to boost personal productivity, enabling faster turnaround, higher quality output, and more efficient day-to-day execution.',
+      'Served as technical subject-matter expert for pre-sales engagements, producing architecture proposals and technical validation for clients across Africa, South Asia, and the Middle East.',
+      'Led two flagship engineering initiatives: an AI/ML R&D program applying machine-learning-driven detection to an existing fraud-prevention product, and a centralized data-reporting platform spanning backend pipelines and web dashboards.',
+      'Managed client engagements end-to-end, from requirements gathering through production delivery.',
+      'Maintained and versioned all project planning, communications, and self-learning documentation on the company SharePoint, keeping it accessible across teams for smooth knowledge transfer.',
     ],
   },
   {
@@ -35,7 +36,7 @@ export const experience: Experience[] = [
   {
     company: 'Omobio (Pvt) Ltd.',
     role: 'Software Engineer',
-    period: 'Apr 2022 – Jan 2024',
+    period: 'May 2022 – Jan 2024',
     highlights: [
       'Led design and development of cross-platform mobile applications for multiple telecom and enterprise clients in React Native, managing releases across Play Store, App Store, and Huawei AppGallery.',
       'Contributed to a carrier-grade device-management platform (PHP Yii2 backend, React/Redux-Saga admin console), working within its device blacklist/whitelist fraud-prevention subsystem.',
@@ -49,7 +50,7 @@ export const experience: Experience[] = [
     role: 'Software Engineer (Intern) — Full Stack',
     period: 'Oct 2021 – Apr 2022',
     highlights: [
-      'Supported frontend, backend, and mobile feature development for enterprise-grade projects using React.js, React Native, Python, and RESTful APIs; transitioned to a full-time Software Engineer role based on strong performance.',
+      'Supported frontend, backend, and mobile feature development for enterprise-grade projects using React.js, React Native, Ext.js/Sencha Touch, and RESTful APIs, including full delivery of a client change request for a production Salesforce mobile application; transitioned to a full-time Software Engineer role based on strong performance.',
     ],
   },
 ];
