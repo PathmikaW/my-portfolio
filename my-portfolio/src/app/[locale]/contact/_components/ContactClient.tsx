@@ -26,7 +26,7 @@ export default function ContactClient({ contactInfo }: Props) {
   const t = useTranslations('contact');
   const tPageTitle = useTranslations('pageTitle');
 
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '', company: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
@@ -50,7 +50,7 @@ export default function ContactClient({ contactInfo }: Props) {
 
       if (data.success) {
         setResponseMessage(t('successMessage'));
-        setFormData({ name: '', email: '', message: '' });
+        setFormData({ name: '', email: '', message: '', company: '' });
       } else {
         setResponseMessage(t('errorMessage'));
       }
@@ -107,6 +107,18 @@ export default function ContactClient({ contactInfo }: Props) {
           <div className="rounded-xl border border-accent-blue/20 bg-white/90 dark:bg-black/70 backdrop-blur-lg p-6 shadow-md shadow-accent-blue/5">
             <h2 className="font-display text-xl font-semibold mb-6">{t('sendMessage')}</h2>
             <form onSubmit={handleSubmit} className="space-y-6">
+              {/* honeypot: hidden from real users, catches bots */}
+              <input
+                type="text"
+                name="company"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={formData.company}
+                onChange={handleChange}
+                className="absolute left-[-9999px] size-0 opacity-0"
+              />
+
               <div>
                 <label className="block mb-2 text-sm font-medium">{t('name')}</label>
                 <Input type="text" name="name" required value={formData.name} onChange={handleChange} />
