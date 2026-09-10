@@ -109,7 +109,7 @@ export default function HomeClient({ profile, locale }: Props) {
           <ScrollItem>
             <BentoGridItem>
               <Briefcase className="size-6 text-accent-blue mb-3" />
-              <p className="font-display text-2xl font-bold">~5 Years</p>
+              <p className="font-display text-2xl font-bold">5 Years</p>
               <p className="text-sm text-muted-foreground mt-1">Production engineering experience</p>
             </BentoGridItem>
           </ScrollItem>
@@ -123,7 +123,7 @@ export default function HomeClient({ profile, locale }: Props) {
           <ScrollItem>
             <BentoGridItem>
               <FolderGit2 className="size-6 text-accent-green mb-3" />
-              <p className="font-display text-2xl font-bold">25+</p>
+              <p className="font-display text-2xl font-bold">20+</p>
               <p className="text-sm text-muted-foreground mt-1">Client &amp; product engagements</p>
             </BentoGridItem>
           </ScrollItem>
