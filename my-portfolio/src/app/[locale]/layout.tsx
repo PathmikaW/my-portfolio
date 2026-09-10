@@ -13,14 +13,36 @@ const geistSans = Geist({ variable: '--font-geist-sans', subsets: ['latin'] });
 const geistMono = Geist_Mono({ variable: '--font-geist-mono', subsets: ['latin'] });
 const spaceGrotesk = Space_Grotesk({ variable: '--font-display', subsets: ['latin'], weight: ['500', '600', '700'] });
 
+const SITE_URL = 'https://pathmikaw.vercel.app';
+const TITLE = 'Pathmika Weerarathna - Full-Stack & AI/ML Engineer';
+const DESCRIPTION =
+  'Portfolio of Pathmika Weerarathna - full-stack engineer (Mobile, Web) with applied AI/ML experience, reading an MSc in Artificial Intelligence at the University of Moratuwa.';
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
   if (!locales.includes(locale)) notFound();
 
+  const url = `${SITE_URL}/${locale}`;
+
   return {
+    metadataBase: new URL(SITE_URL),
     title: 'Home | Pathmika Weerarathna',
-    description: 'Welcome to the portfolio of Pathmika Weerarathna. Explore projects, skills, and contact information.',
+    description: DESCRIPTION,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'website',
+      url,
+      siteName: 'Pathmika Weerarathna',
+      title: TITLE,
+      description: DESCRIPTION,
+      locale: locale === 'si' ? 'si_LK' : 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: TITLE,
+      description: DESCRIPTION,
+    },
   };
 }
 
