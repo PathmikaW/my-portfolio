@@ -1,10 +1,22 @@
+export interface ProjectDetailSection {
+  heading: string;
+  points: string[];
+}
+
 export interface PersonalProject {
   id: string;
   title: string;
   description: string;
   techStack: string[];
   githubUrl: string;
+  /** Overrides the default "View on GitHub" label, e.g. when a project spans several repos. */
+  githubLabel?: string;
   liveUrl?: string;
+  /** Additional links (other repos, design docs) shown next to the main link. */
+  extraLinks?: { label: string; url: string }[];
+  scopeNote?: string;
+  /** When present the card becomes an expandable, full-width case study. */
+  details?: ProjectDetailSection[];
 }
 
 export interface IndustryProject {
@@ -19,6 +31,94 @@ export interface IndustryProject {
 }
 
 export const personalProjects: PersonalProject[] = [
+  {
+    id: 'pulsecrypto',
+    title: 'PulseCrypto - Real-Time Market Viewer',
+    description:
+      'Real-time crypto market viewer: a Node.js/Fastify WebSocket gateway and an Expo/React Native app for Android and iOS. The gateway conflates Binance order-book streams into 100 ms broadcasts with backpressure; it is hosted on AWS EC2 and was built spec-driven with Claude Code.',
+    techStack: [
+      'React Native',
+      'Expo',
+      'TypeScript',
+      'Node.js',
+      'Fastify',
+      'WebSockets',
+      'Zustand',
+      'TanStack Query',
+      'Reanimated',
+      'FlashList',
+      'MMKV',
+      'Zod',
+      'Docker',
+      'AWS EC2',
+      'Prometheus',
+    ],
+    githubUrl: 'https://github.com/PathmikaW/pulsecrypto-mobile',
+    githubLabel: 'Mobile app on GitHub',
+    extraLinks: [
+      { label: 'Backend on GitHub', url: 'https://github.com/PathmikaW/pulsecrypto-backend' },
+      {
+        label: 'Architecture decisions (ADRs)',
+        url: 'https://github.com/PathmikaW/pulsecrypto-backend/blob/main/docs/adr/00-overview.md',
+      },
+    ],
+    scopeNote:
+      'The hosted backend runs on a small AWS EC2 instance that is stopped when idle to control cost, so live data appears only while it is running.',
+    details: [
+      {
+        heading: 'Backend gateway (Node.js, TypeScript, Fastify)',
+        points: [
+          "Connects to Binance's combined depth and ticker WebSocket streams with reconnect and exponential backoff, validating every raw message with a Zod parser before it is used.",
+          'Always tracks the five required pairs (BTC, ETH, SOL, DOGE, XRP against USDT) and adds extra pairs chosen at startup by live 24h volume, excluding leveraged tokens and stablecoin pairs; falls back to the required five if Binance is unreachable.',
+          'Conflates the latest state per pair on a fixed, configurable timer (default 100 ms), so memory stays bounded by the number of pairs regardless of upstream message rate.',
+          'Protects against slow consumers by checking ws.bufferedAmount before every write: a lagging client is skipped for that tick and disconnected after repeated skips. No per-client queues, plus per-IP and total connection caps.',
+          'Computes buy/sell pressure and spread from the order book as pure, unit-tested functions.',
+          'Serves GET /pairs/meta (real Binance 24h data, 60 s cache, timeout, scoped mock fallback), /health, and Prometheus /metrics with connection counts, dropped-message counts and a broadcast-latency histogram.',
+        ],
+      },
+      {
+        heading: 'Mobile app (Expo, React Native, Android and iOS)',
+        points: [
+          'Watchlist of every pair the backend tracks in a FlashList with memoized rows, client-side search, and favorites persisted in MMKV and restored synchronously on launch.',
+          'Terminal screen with price, 24h high/low, buy/sell pressure, spread, a live order book, a market-depth chart, and a last-updated time taken from the backend tick rather than recomputed on the device.',
+          'Green/red price flashes and order-book bar animations run on the UI thread with Reanimated, so a tick causes no JavaScript-thread re-render.',
+          'Offline behavior: connection status is always visible, the last data stays on screen, and the socket reconnects automatically with exponential backoff and jitter, using broadcast silence as the liveness signal instead of a heartbeat protocol.',
+          'Pull-to-refresh reloads /pairs/meta through TanStack Query without touching the WebSocket. REST calls go through one axios client with a common error model and retries only for transient failures.',
+          'Internationalized with i18next, with design tokens extracted from the Figma REST API, and a telemetry screen showing live JS-thread FPS and WebSocket message rate.',
+        ],
+      },
+      {
+        heading: 'Performance work',
+        points: [
+          'Traced FPS drops under live traffic to uncached Intl formatter construction and one React commit per WebSocket message, then to hidden tabs re-rendering on every tick (JS-thread FPS had collapsed to 15-19).',
+          'Fixed with cached formatters, WebSocket-to-store updates batched to one flush per animation frame, throttled MMKV writes, memoized static content, and focus-gated live subscriptions. The app now holds about 60 FPS on the Android emulator with eight pairs streaming.',
+        ],
+      },
+      {
+        heading: 'Architecture and quality',
+        points: [
+          'Hexagonal (ports and adapters) backend with a single composition root and ESLint-enforced dependency direction; feature-first mobile structure with a small shared core layer.',
+          'One Zod wire contract mirrored byte for byte between the two repositories, with a drift-check script.',
+          'Strict TypeScript, ESLint, Conventional Commits and a three-stage Husky gate. 54 backend tests (unit plus integration against a real Fastify app and ws client) and 71 mobile unit tests.',
+          'Every significant decision is recorded as an ADR (28 in total) covering the options considered, the rationale and the trade-offs accepted.',
+        ],
+      },
+      {
+        heading: 'Deployment and security',
+        points: [
+          'Multi-stage Docker image running as a non-root user, verified on Amazon Linux and hosted on AWS EC2 behind Caddy with HTTPS/WSS; the boot script and a least-privilege IAM policy are documented.',
+          'Release builds refuse to start on plaintext URLs; the backend adds rate limiting, origin checks and validated configuration. A shareable arm64 release APK is built with EAS.',
+        ],
+      },
+      {
+        heading: 'AI-assisted, spec-driven workflow',
+        points: [
+          'Built end to end with Claude Code against written specs and ADRs, with typecheck, lint and tests run before every commit.',
+          'Scope decisions, trade-offs and corrections were directed and reviewed by me, and each decision is recorded in the ADRs.',
+        ],
+      },
+    ],
+  },
   {
     id: 'lottery-analyzer',
     title: 'Lottery Analyzer',

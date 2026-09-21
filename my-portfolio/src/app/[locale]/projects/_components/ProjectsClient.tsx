@@ -22,6 +22,7 @@ export default function ProjectsClient({ personalProjects, industryProjects }: P
   const t = useTranslations('projects');
   const tPageTitle = useTranslations('pageTitle');
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [expandedPersonalId, setExpandedPersonalId] = useState<string | null>(null);
 
   const grouped = CATEGORY_ORDER.map((category) => ({
     category,
@@ -44,7 +45,7 @@ export default function ProjectsClient({ personalProjects, industryProjects }: P
         <TabsContent value="personal" className="w-full">
           <ScrollSection className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             {personalProjects.map((project) => (
-              <ScrollItem key={project.id}>
+              <ScrollItem key={project.id} className={project.details ? 'md:col-span-2' : undefined}>
                 <CardContainer>
                   <CardBody className="w-full">
                     <div className="h-full rounded-xl border border-accent-blue/30 bg-white/90 dark:bg-black/70 backdrop-blur-lg p-6 shadow-lg shadow-accent-blue/10">
@@ -71,8 +72,20 @@ export default function ProjectsClient({ personalProjects, industryProjects }: P
                           className="inline-flex items-center gap-1.5 text-accent-blue hover:underline font-medium text-sm"
                         >
                           <Github className="size-4" />
-                          {t('viewOnGithub')}
+                          {project.githubLabel ?? t('viewOnGithub')}
                         </a>
+                        {project.extraLinks?.map((link) => (
+                          <a
+                            key={link.url}
+                            href={link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 text-accent-blue hover:underline font-medium text-sm"
+                          >
+                            <Github className="size-4" />
+                            {link.label}
+                          </a>
+                        ))}
                         {project.liveUrl && (
                           <a
                             href={project.liveUrl}
@@ -85,6 +98,50 @@ export default function ProjectsClient({ personalProjects, industryProjects }: P
                           </a>
                         )}
                       </CardItem>
+
+                      {project.scopeNote && (
+                        <CardItem translateZ={10} className="mt-4 flex items-start gap-2 text-xs text-muted-foreground italic">
+                          <Info className="size-3.5 shrink-0 mt-0.5" />
+                          <span>{project.scopeNote}</span>
+                        </CardItem>
+                      )}
+
+                      {project.details && (
+                        <CardItem translateZ={20} className="mt-4">
+                          <button
+                            onClick={() => setExpandedPersonalId(expandedPersonalId === project.id ? null : project.id)}
+                            className="inline-flex items-center gap-1.5 text-accent-blue hover:underline font-medium text-sm"
+                          >
+                            {expandedPersonalId === project.id ? t('hideHighlights') : t('viewHighlights')}
+                            <motion.span animate={{ rotate: expandedPersonalId === project.id ? 180 : 0 }} transition={{ duration: 0.2 }}>
+                              <ChevronDown className="size-4" />
+                            </motion.span>
+                          </button>
+
+                          <AnimatePresence>
+                            {expandedPersonalId === project.id && (
+                              <motion.div
+                                initial={{ height: 0, opacity: 0 }}
+                                animate={{ height: 'auto', opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                className="mt-4 space-y-5 overflow-hidden"
+                              >
+                                {project.details.map((section) => (
+                                  <div key={section.heading}>
+                                    <h3 className="font-display text-sm font-semibold text-accent-blue">{section.heading}</h3>
+                                    <ul className="mt-2 space-y-1.5 list-disc pl-5 text-sm text-muted-foreground">
+                                      {section.points.map((point, i) => (
+                                        <li key={i}>{point}</li>
+                                      ))}
+                                    </ul>
+                                  </div>
+                                ))}
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </CardItem>
+                      )}
                     </div>
                   </CardBody>
                 </CardContainer>
