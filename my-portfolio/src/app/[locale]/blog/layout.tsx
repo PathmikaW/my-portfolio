@@ -9,7 +9,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: 'Blog | Pathmika Weerarathna',
     ogTitle: 'Garden Diary - From 5 Years in Tech to My First Home Farm',
     description:
-      'A software engineer on a career break, growing a home farm from scratch in Sri Lanka and writing about it in public, from the first seed to the first harvest.',
+      'A software engineer growing a home farm from scratch in Sri Lanka and writing about it in public, from the first seed to the first harvest.',
   });
 }
 

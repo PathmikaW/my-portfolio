@@ -124,6 +124,9 @@ Edit the object in `blog.ts`. URLs are the identity of a post (used as React key
 
 ### Page UI and text
 
+Keep page-level text (subtitle, series intro, link-preview description) timeless: no "career break" or other temporary circumstances, because the blog continues after them. Individual posts can mention them, since they are dated diary entries.
+
+
 - Layout: `src/app/[locale]/blog/_components/BlogClient.tsx`
 - UI strings: `blog.*` keys in `src/messages/en.json` **and** `src/messages/si.json`
 - Link-preview title/description: `src/app/[locale]/blog/layout.tsx`

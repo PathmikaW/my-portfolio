@@ -29,7 +29,7 @@ export interface BlogSeries {
   tagline: string;
   /** Short intro paragraph under the tagline */
   description: string;
-  /** Optional tiles shown under the description, e.g. the goals of the career break */
+  /** Optional tiles shown under the description, e.g. the series' goals */
   goals?: BlogSeriesGoal[];
   /** Optional line after the goals */
   closing?: string;
@@ -51,9 +51,9 @@ export const blogSeries: BlogSeries[] = [
     emoji: '🌱',
     status: 'ongoing',
     tagline: 'From 5 years in tech to my first home farm, from the first seed to the first harvest.',
-    description: "I'm on a career break, and I'm using it to grow in three ways:",
+    description: "I'm growing in three ways at once:",
     goals: [
-      { icon: 'code', title: 'Tech career', text: 'Freelancing and personal projects that build my skills' },
+      { icon: 'code', title: 'Tech career', text: 'Projects that keep building my skills' },
       { icon: 'study', title: "Master's degree", text: 'Continuing my MSc in Artificial Intelligence' },
       { icon: 'farm', title: 'Farming', text: "Something I've always wanted to try" },
     ],
