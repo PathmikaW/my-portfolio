@@ -31,6 +31,7 @@ export function Header() {
     { href: `/${locale}/projects`, label: t('projects') },
     { href: `/${locale}/achievements`, label: t('achievements') },
     { href: `/${locale}/extracurricular`, label: t('extracurricular') },
+    { href: `/${locale}/blog`, label: t('blog') },
     { href: `/${locale}/contact`, label: t('contact') },
   ];
 

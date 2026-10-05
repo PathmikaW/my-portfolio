@@ -16,6 +16,7 @@
     "projects": "ව්‍යාපෘති",
     "achievements": "ප්‍රාප්ති",
     "extracurricular": "අතිරේක ක්‍රියාකාරකම්",
+    "blog": "බ්ලොග්",
     "contact": "සම්බන්ධ වන්න",
     "menuTitle": "නාවික මෙනුව",
     "menuDescription": "පත්මිකගේ පෝට්ෆෝලියෝ සඳහා ප්‍රධාන නාවික මෙනුව"
@@ -28,6 +29,7 @@
     "projects": "ව්‍යාපෘති",
     "achievements": "ප්‍රාප්ති",
     "extracurricular": "අතිරේක ක්‍රියාකාරකම්",
+    "blog": "බ්ලොග්",
     "contact": "සම්බන්ධ වන්න"
   },
   "footer": {
@@ -74,5 +76,23 @@
     "liveDemo": "සජීවී පෙන්වීම",
     "viewHighlights": "විශේෂාංග බලන්න",
     "hideHighlights": "විශේෂාංග සඟවන්න"
+  },
+  "blog": {
+    "subtitle": "මගේ වෘත්තීය විවේකය ගැන විවෘතව ලියමි: මුල සිටම ගෙවතු වගාවක් ගොඩනැගීම, අධ්‍යාපනය සහ ඒ අතරතුර නිර්මාණය කරන දේ.",
+    "followOnMedium": "Medium හි මා අනුගමනය කරන්න",
+    "ongoing": "දිගටම",
+    "latest": "නවතම",
+    "readOnMedium": "Medium හි කියවන්න",
+    "upNext": "ඊළඟට",
+    "inProgress": "ඊළඟ සටහන ලියමින් පවතී",
+    "upNextDefault": "ඉඩමේ වැඩ ඉදිරියට යන විට දින කිහිපයකට වරක් නව සටහන් පළ වේ.",
+    "followForUpdates": "යාවත්කාලීන සඳහා අනුගමනය කරන්න",
+    "allEntries": "සියලු සටහන්",
+    "entriesCount": "සටහන් {count}",
+    "postsCount": "ලිපි {count}",
+    "lastUpdated": "යාවත්කාලීන කළේ {date}",
+    "partOf": "කොටස {part}/{total}",
+    "comingSoonHeading": "ළඟදීම",
+    "comingSoon": "ළඟදීම"
   }
 }
