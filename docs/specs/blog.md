@@ -39,11 +39,14 @@ Notes:
 - Medium article pages are behind Cloudflare and can't be fetched; don't try. Use the feed only.
 - If the post isn't in the feed yet (just published), derive the title from the slug, use today's date, and say so.
 
-### 3. Write the `summary`
+### 3. Write the `highlights`
 
-- If the user gave LinkedIn text: use its middle sentence(s). Drop the `🌱 Garden Diary #N` header, emoji, hashtags and the "Full post on Medium 👇" line. Light edits for flow are fine; keep their voice and facts.
-- If not: write one factual sentence from the title. **Don't invent details** that aren't in the title or the user's text. Tell the user the summary was written from the title, so they can check it.
-- First person, 1-2 sentences, under ~220 characters, plain hyphens (no em dashes).
+Cards show these as bullet points, so each one should be a short, scannable fact.
+
+- If the user gave LinkedIn text: split its middle sentence(s) into 2-4 bullets, one event or idea each. Drop the `🌱 Garden Diary #N` header, emoji, hashtags and the "Full post on Medium 👇" line. Keep their voice and facts (numbers, places, people).
+  - Example: "A cat knocked over a seed tray, we built a sun shade for the nursery, and the excavator finally confirmed its arrival." -> `['A cat knocked over a seed tray', 'Built a sun shade for the nursery', 'The excavator finally confirmed its arrival']`
+- If not: write 1-2 bullets from the title only. **Don't invent details** that aren't in the title or the user's text. Tell the user the bullets were written from the title, so they can check them.
+- Each bullet under ~70 characters, no trailing period, sentence case, plain hyphens (no em dashes).
 
 ### 4. Pick `tags`
 
@@ -61,7 +64,7 @@ Append to the right series in `blogSeries` (order doesn't matter, the page sorts
   part: 1,            // omit part + totalParts for a single-part entry
   totalParts: 2,
   title: 'Title Exactly As On Medium',
-  summary: 'One or two sentences from the LinkedIn text.',
+  highlights: ['First thing that happened', 'Second thing', 'What comes next'],
   url: 'https://medium.com/@pathmikaweerarathna/garden-diary-9-1-2-...-abc123',
   date: '2026-10-08',
   tags: ['Nursery'],
@@ -95,7 +98,7 @@ No co-author lines. Don't push unless asked; pushing `main` deploys.
 
 ### 9. Tell the user
 
-- What was added (entry, parts, titles) and anything you had to derive or guess (titles from slugs, missing dates, summary written from the title).
+- What was added (entry, parts, titles) and anything you had to derive or guess (titles from slugs, missing dates, highlights written from the title).
 - After deploy, the preview card at `/en/blog` shows the new latest post. WhatsApp caches previews, so adding `?v=<n>` to a shared link forces a fresh one; for LinkedIn use https://www.linkedin.com/post-inspector/.
 
 ## Other blog tasks
@@ -107,7 +110,11 @@ The `dev-journal` series already exists with `status: 'coming-soon'` and no post
 1. Add posts the same way (`entry` = the journal number).
 2. Change `status` to `'ongoing'`. Ongoing series with at least one post get the full layout (intro card, latest, up next, timeline); coming-soon series show as a small card at the bottom.
 
-For a brand-new series, add a `BlogSeries` object with a unique kebab-case `id`, `name`, one `emoji`, a `tagline` (one line), a `description` (2-3 sentences) and `posts: []`.
+For a brand-new series, add a `BlogSeries` object with a unique kebab-case `id`, `name`, one `emoji`, a `tagline` (one line), a `description` (one short intro sentence) and `posts: []`.
+
+Keep the intro card scannable: don't pack everything into `description`. Use the optional fields instead:
+- `goals`: 2-4 tiles of `{ icon, title, text }`. `icon` is `'code' | 'study' | 'farm'`; to add another, map it to a lucide icon in `GOAL_ICONS` in `BlogClient.tsx`. Keep `title` to 1-3 words and `text` under ~60 characters.
+- `closing`: one sentence after the tiles.
 
 Note: `src/app/[locale]/blog/opengraph-image.tsx` features the `garden-diary` series. If another series becomes the main one, update that file.
 

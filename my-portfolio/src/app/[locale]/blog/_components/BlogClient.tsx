@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Badge } from '@/components/ui/badge';
+import { cn } from '@/lib/utils';
 import { ScrollSection, ScrollItem } from '@/components/effects/text-reveal';
-import { ArrowUpRight, BookOpen, CalendarDays, Hourglass, PenLine } from 'lucide-react';
-import { MEDIUM_PROFILE_URL, type BlogPost, type BlogSeries } from '@/data/blog';
+import { ArrowUpRight, BookOpen, CalendarDays, Code2, GraduationCap, Hourglass, PenLine, Sprout } from 'lucide-react';
+import { MEDIUM_PROFILE_URL, type BlogPost, type BlogSeries, type BlogSeriesGoal } from '@/data/blog';
 
 interface Props {
   series: BlogSeries[];
@@ -37,6 +38,25 @@ function formatDate(date: string, locale: string) {
     year: 'numeric',
     timeZone: 'UTC',
   });
+}
+
+const GOAL_ICONS: Record<BlogSeriesGoal['icon'], typeof Code2> = {
+  code: Code2,
+  study: GraduationCap,
+  farm: Sprout,
+};
+
+function Highlights({ items, className }: { items: string[]; className?: string }) {
+  return (
+    <ul className={cn('space-y-1.5 text-sm text-muted-foreground', className)}>
+      {items.map((item) => (
+        <li key={item} className="flex gap-2">
+          <span aria-hidden className="mt-[0.55em] size-1.5 shrink-0 rounded-full bg-accent-blue/60" />
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 const linkClass = 'inline-flex items-center gap-1.5 text-accent-blue hover:underline font-medium text-sm';
@@ -86,9 +106,29 @@ export default function BlogClient({ series, locale }: Props) {
                       {t('ongoing')}
                     </Badge>
                   </div>
-                  <p className="mt-2 font-medium">{s.tagline}</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{s.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
+                  <p className="mt-3 text-lg font-medium leading-snug">{s.tagline}</p>
+                  <p className="mt-4 text-sm text-muted-foreground">{s.description}</p>
+                  {s.goals && (
+                    <ul className="mt-3 grid grid-cols-1 sm:grid-cols-3 gap-3">
+                      {s.goals.map((goal) => {
+                        const Icon = GOAL_ICONS[goal.icon];
+                        return (
+                          <li
+                            key={goal.title}
+                            className="flex items-start gap-3 rounded-lg border border-accent-blue/15 bg-accent-blue/5 p-3"
+                          >
+                            <Icon className="size-5 shrink-0 text-accent-blue mt-0.5" />
+                            <div>
+                              <p className="text-sm font-semibold">{goal.title}</p>
+                              <p className="text-xs text-muted-foreground mt-0.5">{goal.text}</p>
+                            </div>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                  {s.closing && <p className="mt-4 text-sm text-muted-foreground">{s.closing}</p>}
+                  <div className="mt-5 pt-4 border-t border-accent-blue/15 flex flex-wrap gap-x-6 gap-y-2 font-mono text-xs text-muted-foreground">
                     <span>{t('entriesCount', { count: entries.length })}</span>
                     <span>{t('postsCount', { count: s.posts.length })}</span>
                     {dated.length > 0 && <span>{t('lastUpdated', { date: formatDate(dated[0], locale) })}</span>}
@@ -125,7 +165,7 @@ export default function BlogClient({ series, locale }: Props) {
                     <h3 className="mt-2 font-display text-xl font-semibold text-accent-blue group-hover:underline">
                       {latest.title}
                     </h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{latest.summary}</p>
+                    <Highlights items={latest.highlights} className="mt-3" />
                     <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
                       {latest.date && (
                         <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
@@ -197,7 +237,7 @@ export default function BlogClient({ series, locale }: Props) {
                               <h5 className="mt-1 font-display font-semibold text-accent-blue group-hover:underline">
                                 {post.title}
                               </h5>
-                              <p className="mt-2 text-sm text-muted-foreground flex-1">{post.summary}</p>
+                              <Highlights items={post.highlights} className="mt-3 flex-1" />
                               <div className="mt-4 flex flex-wrap items-center justify-between gap-2">
                                 <div className="flex flex-wrap gap-1.5">
                                   {post.tags.map((tag) => (
