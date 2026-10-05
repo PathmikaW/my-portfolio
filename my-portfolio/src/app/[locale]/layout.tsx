@@ -28,6 +28,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     metadataBase: new URL(SITE_URL),
     title: 'Home | Pathmika Weerarathna',
+    // Inherited by every page: <meta name="author"> for LinkedIn and other scrapers
+    authors: [{ name: 'Pathmika Weerarathna', url: SITE_URL }],
+    creator: 'Pathmika Weerarathna',
     description: DESCRIPTION,
     alternates: { canonical: url },
     openGraph: {

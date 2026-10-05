@@ -15,6 +15,8 @@ Each page folder `my-portfolio/src/app/[locale]/<page>/` has:
 
 The home page (`[locale]/layout.tsx` + `[locale]/opengraph-image.tsx`) has its own hand-written card; edit those files directly.
 
+`authors` / `creator` (`<meta name="author">`, which LinkedIn's inspector reads) are set once in `[locale]/layout.tsx` and inherited by every page. Don't repeat them in `pageMetadata()`.
+
 ## Rules for the image card
 
 - Text only: **no emoji and no remote images**. `next/og` would fetch them over the network at build time, and a failure breaks the build.
