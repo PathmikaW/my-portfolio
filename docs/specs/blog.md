@@ -51,7 +51,7 @@ Cards show these as bullet points, so each one should be a short, scannable fact
 ### 4. Pick `tags`
 
 1-2 short Title Case topics. Reuse existing tags where they fit, so the archive stays consistent:
-`Soil Health`, `Seeds`, `Seed Starting`, `Nursery`, `Land Preparation`, `Irrigation`, `Plant Health`, `Farm Visits`, `Planning`, `Market Research`, `Organic Farming`, `DIY`, `Family`, `Career Break`, `Learning in Public`.
+`Soil Health`, `Seeds`, `Seed Starting`, `Nursery`, `Land Preparation`, `Irrigation`, `Plant Health`, `Farm Visits`, `Planning`, `Market Research`, `Organic Farming`, `Pest Control`, `DIY`, `Family`, `Career Break`, `Learning in Public`.
 Never use `Garden Diary`, `Farming` or `Sri Lanka` (they apply to every post). Medium's own categories in the feed (`<category>`) are a useful hint.
 
 ### 5. Add the object to `posts`
