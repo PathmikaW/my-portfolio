@@ -391,6 +391,20 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planning'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*DQKwNSHgnjgBCIiydsxFQA.png',
       },
+      {
+        entry: 13,
+        title: 'Posts Go Into Zone A, and the Design Gets Refined Again',
+        highlights: [
+          'Posts went into Zone A, marked out at 10-foot gaps',
+          'Sowed 415 more chili seeds',
+          'Measured Zone B and refined the farm design again with real measurements',
+          'Rain shut things down for the day',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-13-posts-go-into-zone-a-and-the-design-gets-refined-again-cb662e15b49c',
+        date: '2026-10-13',
+        tags: ['Land Preparation', 'Seed Starting'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*MMaBnqqi_4pqWOpxxdcqtQ.jpeg',
+      },
     ],
   },
   {
