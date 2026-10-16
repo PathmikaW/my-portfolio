@@ -2,7 +2,7 @@
 
 All content is typed TypeScript data in **`my-portfolio/src/data/`**. Edit the data file and the page, its link-preview image and (where relevant) the home page update on the next deploy. No component changes are needed for ordinary content updates.
 
-**Source of truth:** the user's CV and LinkedIn. Portfolio wording must match them. Never invent metrics, dates, titles or tech; if something is missing, ask or leave the optional field out.
+**Source of truth:** the user's CVs (`/Users/tmpw/Projects/profile_update/CV/LaTeX/`, General CV first) and LinkedIn. Experience bullets follow the General CV's wording, minus sensitive or over-precise details (see the rules in `CLAUDE.md`). When Experience changes, update the GitHub profile README's Experience section (`PathmikaW/PathmikaW`) to match. Portfolio wording must match them. Never invent metrics, dates, titles or tech; if something is missing, ask or leave the optional field out.
 
 ## Data files
 

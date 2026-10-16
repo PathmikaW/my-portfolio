@@ -44,6 +44,8 @@ Read the matching spec before starting. Each one lists the exact steps and how t
 ## Rules
 
 - **Content must match the CV and LinkedIn.** Don't invent numbers, titles, dates or claims. If a fact is missing, ask or leave the optional field out.
+- **The CVs are the reference for wording**: `/Users/tmpw/Projects/profile_update/CV/LaTeX/*.tex` (General CV first). Keep the portfolio, the GitHub profile README (`PathmikaW/PathmikaW`) and the CVs consistent.
+- **No sensitive or over-precise work details**, even if a CV has them: no security internals (how pinning, integrity checks or kill-switches work), fraud-detection methods, password or encryption schemes, licence workarounds, or law-enforcement platform internals. State results at a high level ("recovered previously dropped records", "fixed a major performance regression"), not exact internal figures. Client and product names already in the CVs are fine; others (e.g. partner banks) stay generic.
 - Writing style: plain hyphens (` - `), never em dashes. No emoji in data files except the blog series `emoji` field.
 - Code style: Prettier (single quotes, semicolons, width 100). Match the surrounding component patterns (`ScrollSection`/`ScrollItem` reveals, card classes like `rounded-xl border border-accent-blue/20 bg-white/90 dark:bg-black/70`).
 - External links open in a new tab: `target="_blank" rel="noopener noreferrer"`.
