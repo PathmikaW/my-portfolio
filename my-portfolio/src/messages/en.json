@@ -84,7 +84,7 @@
     "readOnMedium": "Read on Medium",
     "upNext": "Up next",
     "inProgress": "Next entry in progress",
-    "upNextDefault": "New entries go up every few days as the work on the land moves forward.",
+    "upNextDefault": "New entries are on the way. Follow on Medium to read them first.",
     "followForUpdates": "Follow for updates",
     "allEntries": "All entries",
     "entriesCount": "{count, plural, one {# entry} other {# entries}}",

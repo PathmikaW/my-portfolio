@@ -2,6 +2,17 @@
 
 The Blog page (`/[locale]/blog`) lists posts that live on Medium. The site stores only metadata; clicking a card opens the post on Medium in a new tab.
 
+Each series has its **own tab** on the page, and posts never mix between series:
+
+| Series | `id` | What goes in it | Numbering |
+| --- | --- | --- | --- |
+| 🌱 Garden Diary | `garden-diary` | Farming diary entries, titled `Garden Diary #N (part/total): ...` on Medium | `#N` labels, multi-part entries |
+| 💻 Dev Journal | `dev-journal` | Software engineering articles (no "Garden Diary" in the title) | `numbered: false`: standalone articles, no `#N` |
+
+Decide the series from the Medium title first: "Garden Diary #N" -> `garden-diary`; anything about software, code or projects -> `dev-journal`. If unsure, ask.
+
+A link to a specific tab: `/en/blog?series=dev-journal`. Garden Diary is the default tab.
+
 Everything is driven by one file: **`my-portfolio/src/data/blog.ts`**. Adding a post means adding one object to it. The page, the "Latest" card, the timeline, the counts and the link-preview image all update automatically on the next deploy.
 
 ## What the user usually provides
@@ -96,6 +107,16 @@ feat(blog): add Garden Diary #9 (1/2) and (2/2)
 
 No co-author lines. Don't push unless asked; pushing `main` deploys.
 
+### Dev Journal articles
+
+Same steps as above, with these differences:
+- Add the post to the `dev-journal` series' `posts`.
+- `entry`: the next number after the series' highest `entry` (1, 2, 3...). It only sets the order; it is never shown. No `part` / `totalParts`.
+- `title`: exactly as on Medium (straight apostrophes are fine).
+- `highlights`: the LinkedIn text is usually a list of points (e.g. `🔹 Server: ...`); turn the strongest 2-4 into bullets and keep any concrete numbers (FPS, latency, counts).
+- `tags`: 2-4 technologies or topics in their usual spelling (`React Native`, `Node.js`, `WebSockets`, `Performance`, `System Design`...). Reuse tags from earlier Dev Journal posts where they fit. Medium's `<category>` values and the LinkedIn hashtags are good hints.
+- Commit message: `feat(blog): add Dev Journal article "<short title>"`.
+
 ### 9. Tell the user
 
 - What was added (entry, parts, titles) and anything you had to derive or guess (titles from slugs, missing dates, highlights written from the title).
@@ -103,12 +124,9 @@ No co-author lines. Don't push unless asked; pushing `main` deploys.
 
 ## Other blog tasks
 
-### Start a new series (e.g. Dev Journal)
+### Start a new series
 
-The `dev-journal` series already exists with `status: 'coming-soon'` and no posts.
-
-1. Add posts the same way (`entry` = the journal number).
-2. Change `status` to `'ongoing'`. Ongoing series with at least one post get the full layout (intro card, latest, up next, timeline); coming-soon series show as a small card at the bottom.
+Add a `BlogSeries` object. Ongoing series with at least one post get their own tab with the full layout (intro card, latest, up next, timeline); `status: 'coming-soon'` series show as a small card below the tabs until they have posts and are switched to `'ongoing'`. Set `numbered: false` for standalone articles.
 
 For a brand-new series, add a `BlogSeries` object with a unique kebab-case `id`, `name`, one `emoji`, a `tagline` (one line), a `description` (one short intro sentence) and `posts: []`.
 

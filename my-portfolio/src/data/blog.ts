@@ -26,6 +26,11 @@ export interface BlogSeries {
   name: string;
   emoji: string;
   status: 'ongoing' | 'coming-soon';
+  /**
+   * Diary-style series show "#N" labels and an "Up next #N" card. Set false for
+   * standalone articles (Dev Journal); `entry` is then only used for ordering.
+   */
+  numbered?: boolean;
   tagline: string;
   /** Short intro paragraph under the tagline */
   description: string;
@@ -442,10 +447,26 @@ export const blogSeries: BlogSeries[] = [
     id: 'dev-journal',
     name: 'Dev Journal',
     emoji: '💻',
-    status: 'coming-soon',
+    status: 'ongoing',
+    numbered: false,
     tagline: 'Notes on what I build and learn as a software engineer.',
     description:
-      'Freelance work, personal projects, and lessons from my MSc in Artificial Intelligence, written up as I go.',
-    posts: [],
+      'Personal projects, engineering deep dives, and lessons from my MSc in Artificial Intelligence, written up as I go.',
+    posts: [
+      {
+        entry: 1,
+        title: "Backpressure Doesn't Stop at the Socket",
+        highlights: [
+          'Server: keep only the latest value when Binance outpaces the broadcast',
+          'Network: skip updates, then disconnect phones on weak connections',
+          'Phone: apply one update per frame to protect the JS thread',
+          'Screen: pausing hidden tabs took the app from 15-19 FPS back to 60 FPS',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/backpressure-doesnt-stop-at-the-socket-8978e1e8c879',
+        date: '2026-10-16',
+        tags: ['React Native', 'Node.js', 'WebSockets', 'Performance'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*rbvVFQ8HitfTLTs6VMXNuw.png',
+      },
+    ],
   },
 ];
