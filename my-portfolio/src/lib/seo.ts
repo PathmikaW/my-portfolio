@@ -12,13 +12,25 @@ interface PageMetadataInput {
   /** Headline on link previews (WhatsApp, LinkedIn, X); defaults to `title` */
   ogTitle?: string;
   description: string;
+  /**
+   * Explicit preview image. Only for pages whose preview depends on the URL
+   * (e.g. blog tabs); otherwise use the segment's opengraph-image.tsx.
+   */
+  image?: { url: string; alt: string };
 }
 
 /*
  * Metadata for a page's <title>, canonical URL and link previews.
  * The preview image comes from the segment's opengraph-image.tsx (see lib/og-card.tsx).
  */
-export function pageMetadata({ locale, path, title, ogTitle, description }: PageMetadataInput): Metadata {
+export function pageMetadata({
+  locale,
+  path,
+  title,
+  ogTitle,
+  description,
+  image,
+}: PageMetadataInput): Metadata {
   const url = `${SITE_URL}/${locale}${path}`;
   const shareTitle = ogTitle ?? title;
 
@@ -33,11 +45,13 @@ export function pageMetadata({ locale, path, title, ogTitle, description }: Page
       title: shareTitle,
       description,
       locale: locale === 'si' ? 'si_LK' : 'en_US',
+      ...(image && { images: [{ ...image, width: 1200, height: 630 }] }),
     },
     twitter: {
       card: 'summary_large_image',
       title: shareTitle,
       description,
+      ...(image && { images: [image] }),
     },
   };
 }

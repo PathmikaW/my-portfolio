@@ -28,7 +28,7 @@ These are hard-coded. When a related fact changes, update **every** location in 
 
 | Fact | Locations |
 | --- | --- |
-| Years of experience ("5 Years", "five years") | `HomeClient.tsx` quick facts · `profile.ts` summary · `about/layout.tsx` description · `blog.ts` Garden Diary tagline · `blog/layout.tsx` + `blog/opengraph-image.tsx` ("5 years in tech") |
+| Years of experience ("5 Years", "five years") | `HomeClient.tsx` quick facts · `profile.ts` summary · `about/layout.tsx` description · `blog.ts` Garden Diary tagline · `src/lib/blog-preview.ts` Garden Diary preview text ("5 years in tech") |
 | Engagement count ("20+") | `HomeClient.tsx` quick facts |
 | MSc status ("Reading", University of Moratuwa) | `HomeClient.tsx` · `[locale]/layout.tsx` DESCRIPTION · `[locale]/opengraph-image.tsx` · `education.ts` · `profile.ts` · `about/layout.tsx` |
 | Current/last role and title | `profile.ts` title · `[locale]/layout.tsx` TITLE · `experience/layout.tsx` description |

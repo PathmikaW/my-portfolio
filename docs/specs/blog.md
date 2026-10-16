@@ -134,7 +134,7 @@ Keep the intro card scannable: don't pack everything into `description`. Use the
 - `goals`: 2-4 tiles of `{ icon, title, text }`. `icon` is `'code' | 'study' | 'farm'`; to add another, map it to a lucide icon in `GOAL_ICONS` in `BlogClient.tsx`. Keep `title` to 1-3 words and `text` under ~60 characters.
 - `closing`: one sentence after the tiles.
 
-Note: `src/app/[locale]/blog/opengraph-image.tsx` features the `garden-diary` series. If another series becomes the main one, update that file.
+Each ongoing series also needs an entry in `PREVIEW_TEXT` in `src/lib/blog-preview.ts` (preview title, card subtitle, description); without it, links to its tab fall back to the Garden Diary preview. To change the default tab's preview, change `DEFAULT_SERIES` there.
 
 ### Fix or change a post
 
@@ -147,4 +147,4 @@ Keep page-level text (subtitle, series intro, link-preview description) timeless
 
 - Layout: `src/app/[locale]/blog/_components/BlogClient.tsx`
 - UI strings: `blog.*` keys in `src/messages/en.json` **and** `src/messages/si.json`
-- Link-preview title/description: `src/app/[locale]/blog/layout.tsx`
+- Link previews: one per tab, defined in `src/lib/blog-preview.ts`. `blog/page.tsx` picks the series from `?series=` in `generateMetadata`, and the images are served by `src/app/api/og/blog/[series]/route.tsx`. Share `/en/blog` for the Garden Diary preview and `/en/blog?series=dev-journal` for the Dev Journal one.

@@ -15,6 +15,8 @@ Each page folder `my-portfolio/src/app/[locale]/<page>/` has:
 
 The home page (`[locale]/layout.tsx` + `[locale]/opengraph-image.tsx`) has its own hand-written card; edit those files directly.
 
+Exception: the Blog page has one preview **per tab**, so its metadata lives in `blog/page.tsx` (it reads `?series=`) and its images come from `src/app/api/og/blog/[series]/route.tsx` instead of an `opengraph-image.tsx`. See `blog.md`.
+
 `authors` / `creator` (`<meta name="author">`, which LinkedIn's inspector reads) are set once in `[locale]/layout.tsx` and inherited by every page. Don't repeat them in `pageMetadata()`.
 
 ## Rules for the image card
