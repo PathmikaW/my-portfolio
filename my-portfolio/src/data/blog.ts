@@ -473,6 +473,20 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Coconut Farming', 'Family'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*EKLsW3-H3pTQamtP1PrXKA.jpeg',
       },
+      {
+        entry: 16,
+        title: 'The Whole Family Plants Cassava, Bed by Bed',
+        highlights: [
+          'The whole family turned out to help',
+          'Planted cassava stem cuttings across two and a half beds',
+          'Dug more coconut holes',
+          'Planning to bring in more hired help when needed',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-16-the-whole-family-plants-cassava-bed-by-bed-576c61f58853',
+        date: '2026-10-18',
+        tags: ['Planting', 'Family'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*sBYnEKrke3vsfuWnwcp4YQ.jpeg',
+      },
     ],
   },
   {
