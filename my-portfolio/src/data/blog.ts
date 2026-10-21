@@ -487,6 +487,20 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planting', 'Family'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*sBYnEKrke3vsfuWnwcp4YQ.jpeg',
       },
+      {
+        entry: 17,
+        title: 'Approvals, Irrigation Gear, and Twenty-One Beds in Zone A',
+        highlights: [
+          'Filed our coconut plant request and got it approved',
+          'Brought home irrigation pipes, fittings, and a 1000L tank',
+          'Took a forced rest day, then got 21 beds ready in Zone A',
+          'Cassava cuttings arrive next',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-17-approvals-irrigation-gear-and-twenty-one-beds-in-zone-a-68a2de9518e6',
+        date: '2026-10-21',
+        tags: ['Irrigation', 'Land Preparation'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*HmzT7knYfTgGGIgMqtEoqQ.jpeg',
+      },
     ],
   },
   {
