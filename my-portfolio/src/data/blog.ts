@@ -501,6 +501,19 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Irrigation', 'Land Preparation'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*HmzT7knYfTgGGIgMqtEoqQ.jpeg',
       },
+      {
+        entry: 18,
+        title: 'Rain Loses a Day, Then Zone C Gets Its Cassava',
+        highlights: [
+          'Lost a day to rain while waiting on cassava cuttings',
+          "Finished planting all of Zone C's cassava in one afternoon",
+          'Now chasing down fencing mesh for the next step',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-18-rain-loses-a-day-then-zone-c-gets-its-cassava-5518c3706c72',
+        date: '2026-10-24',
+        tags: ['Planting'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*Hu2GIWDxVW-rDP1e5e7UBg.jpeg',
+      },
     ],
   },
   {
