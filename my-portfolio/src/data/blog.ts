@@ -514,6 +514,20 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planting'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*Hu2GIWDxVW-rDP1e5e7UBg.jpeg',
       },
+      {
+        entry: 19,
+        title: 'Rain, Mesh Rolls, and the First Line of Clothing Fence',
+        highlights: [
+          'A rain-slowed stretch gave way to real progress',
+          'Bought 16 rolls of green mesh',
+          'Spotted the first cassava leaves coming up in Zone C',
+          'Pulled the first line of clothing fence around Zones A and B',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-19-rain-mesh-rolls-and-the-first-line-of-clothing-fence-b68955bd3261',
+        date: '2026-10-29',
+        tags: ['Land Preparation', 'Planting'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*6Ho-_tUtIBnEAO7WBZTDsg.jpeg',
+      },
     ],
   },
   {
