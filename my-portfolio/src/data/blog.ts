@@ -528,6 +528,19 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Land Preparation', 'Planting'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*6Ho-_tUtIBnEAO7WBZTDsg.jpeg',
       },
+      {
+        entry: 20,
+        title: "Zone A's Beds Are Done, and the Design Gets a Full Rework",
+        highlights: [
+          "All 29 of Zone A's beds are done",
+          'Zone B is underway',
+          "Reworked the full farm and irrigation design into version 5 to match what's on the ground",
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-20-zone-as-beds-are-done-and-the-design-gets-a-full-rework-0646b6b336cd',
+        date: '2026-10-30',
+        tags: ['Land Preparation', 'Planning'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*5HPasPsmvqg6PDCE-7xBjQ.jpeg',
+      },
     ],
   },
   {
