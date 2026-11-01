@@ -541,6 +541,19 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Land Preparation', 'Planning'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*5HPasPsmvqg6PDCE-7xBjQ.jpeg',
       },
+      {
+        entry: 21,
+        title: 'Mulch Goes Down, and the Chilli Order Grows to 2,000',
+        highlights: [
+          'Covered the first 10 beds with mulch and drip tape',
+          "Kept pushing through Zone A and Zone B's bed prep",
+          'Grew the plant order to 2,000 chilli, 500 brinjal, and 50 Kochchi plants',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-21-mulch-goes-down-and-the-chilli-order-grows-to-2-000-c6269df3815a',
+        date: '2026-11-01',
+        tags: ['Land Preparation', 'Irrigation'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*rQAmMwm93DdDzyDWJrIkMQ.jpeg',
+      },
     ],
   },
   {
