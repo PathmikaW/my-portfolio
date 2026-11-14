@@ -646,6 +646,19 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planting', 'Irrigation'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*HIgaK8EvjIFjtV110BtXzQ.jpeg',
       },
+      {
+        entry: 25,
+        title: 'Six Pairs of Hands, and Almost All the Chili Plants Go In',
+        highlights: [
+          'All six of us worked together today',
+          'Nearly finished our chili planting and completed all 50 Kochchi plants',
+          'Now at almost 2,000 chili plants, 51 Kochchi, and 20 brinjal in the ground',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-25-six-pairs-of-hands-and-almost-all-the-chili-plants-go-in-1972bbf85035',
+        date: '2026-11-14',
+        tags: ['Planting', 'Family'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*jr7SKiWGz6iOkmyRIfQ1FA.jpeg',
+      },
     ],
   },
   {
