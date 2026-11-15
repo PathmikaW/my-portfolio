@@ -659,6 +659,19 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planting', 'Family'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*jr7SKiWGz6iOkmyRIfQ1FA.jpeg',
       },
+      {
+        entry: 26,
+        title: 'Rain, Drain Lines, and 210 Brinjal Plants in Zone B',
+        highlights: [
+          'Fixed a drip tape leak and pushed through a bit of rain',
+          'The whole family planted around 210 brinjal plants in Zone B',
+          'Still need to track down more mulch for the last few beds',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-26-rain-drain-lines-and-210-brinjal-plants-in-zone-b-20f49b5c613a',
+        date: '2026-11-15',
+        tags: ['Planting', 'Irrigation', 'Family'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*EFBHuSUYZXY1BbuQcmuvtw.jpeg',
+      },
     ],
   },
   {
