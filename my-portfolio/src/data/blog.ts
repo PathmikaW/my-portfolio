@@ -672,6 +672,20 @@ export const blogSeries: BlogSeries[] = [
         tags: ['Planting', 'Irrigation', 'Family'],
         cover: 'https://cdn-images-1.medium.com/max/1024/1*EFBHuSUYZXY1BbuQcmuvtw.jpeg',
       },
+      {
+        entry: 27,
+        title: '65 Coconut Plants Arrive, and the Fence Gets Its Final Line',
+        highlights: [
+          'Picked up more mulch and fencing cloth',
+          "Finished Zone A's fence",
+          'Received 65 coconut plants from the government',
+          'Planting day is set for Friday, November 20th',
+        ],
+        url: 'https://medium.com/@pathmikaweerarathna/garden-diary-27-65-coconut-plants-arrive-and-the-fence-gets-its-final-line-f06ee7d6b0b5',
+        date: '2026-11-18',
+        tags: ['Coconut Farming', 'DIY', 'Planning'],
+        cover: 'https://cdn-images-1.medium.com/max/1024/1*J2WyyiM47ZZHDIC0KO4_TA.jpeg',
+      },
     ],
   },
   {
