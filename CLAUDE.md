@@ -40,6 +40,11 @@ Read the matching spec before starting. Each one lists the exact steps and how t
 - **Update portfolio content** (projects, experience, certifications, education, achievements, profile) -> `docs/specs/content.md`
 - **Add a new page** -> `docs/specs/new-page.md`
 - **Link previews (WhatsApp/LinkedIn/X) and SEO** -> `docs/specs/seo.md`
+- **Write or update test cases** -> `docs/test-cases/README.md` (or run `/write-test-cases`)
+
+## Specs and test cases
+
+Each spec in `docs/specs/<name>.md` has test cases in `docs/test-cases/<name>.md`. **Whenever a spec changes, update its test cases in the same change** (`/write-test-cases <name>`), then run `docs/test-cases/check-sync.sh --update`. `docs/test-cases/check-sync.sh` must report all OK before committing a spec change. A new spec needs a new test-case file.
 
 ## Rules
 
